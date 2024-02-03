@@ -25,17 +25,18 @@ class Staff extends CI_Controller {
         
         $this->load->library('session');
         
-        $this->load->model("Initialize/Session");
-        $this->load->model("Initialize/Announcement");
-        $this->load->model("Initialize/Student");
-        $this->load->model("Initialize/Func_Misc");
-        $this->load->model("Initialize/Account");
-        $this->load->model("Initialize/Comments");
-        $this->load->model("Initialize/Replies");
-
-        $this->load->model("Initialize/Request");
-
-        $this->load->model("Initialize/Dates");
+        $this->load->model([
+            "Initialize/Session",
+            "Initialize/Announcement",
+            "Initialize/Student",
+            "Initialize/Func_Misc",
+            "Initialize/Account",
+            "Initialize/Comments",
+            "Initialize/Replies",
+            "Initialize/Request",
+            "Initialize/Dates",
+            "Initialize/User"
+        ]);        
         
         $this->load->model("Initialize/User");
         $this->message = null;

@@ -23,14 +23,19 @@ class announcementSub {
         }
         switch ((!empty($_GET['view'])) ? $_GET['view'] : null) {
             case "view":
-                $title = 'Add';
-                $res = $self->Announcement->single_announcement($_GET['id']);
+                // $title = 'Add';
+                // $res = $self->Announcement->single_announcement($_GET['id']);
+
+                
+                $mydb = $self->db->query("SELECT * FROM  `announcement` WHERE id_announcement = ".$_GET['id']." ORDER BY id_announcement DESC ");
+                $cur = $mydb->result();
+
                 $content = $self->load->view(
                     'Scholar/theme/modules/announcement/list',
                     array(
-                        "cure" => $res,
+                        "output" => $cur,
                         "response" => $message,
-                        "link"=>$link
+                        "link"=>$_GET['list']
                     ),
                     true
                 );

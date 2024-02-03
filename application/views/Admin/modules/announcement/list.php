@@ -99,7 +99,7 @@
 						echo '<td>' . $result->date_posted . '</td>';
 						$url = urlencode(json_encode(array("id"=>$result->id_announcement,"desc"=>$result->announcement_desc,"status"=>$result->announcement_stat)));
 						echo '<td  width="10%" > 
-						<a title="View Inormation" href="'.base_url("$link/announcement?view=view&id&$result->id_announcement&val=".($url)).'" class="btn btn-default btn-sm "><i class="fa fa-info fa-fw"></i></a>
+						<a title="View Inormation" href="'.base_url("$link/announcement?view=view&id=".$result->id_announcement."&list=".($link)).'" class="btn btn-default btn-sm "><i class="fa fa-info fa-fw"></i></a>
 						<a title="Edit" href="'.base_url("$link/announcement?view=update&val=".($url)).'" class="btn btn-info btn-sm" ><i class="fa fa-pencil fa-fw"></i></a>
 						<a title="Delete" href="'.base_url("SubAdmin/annoucement/AnnounceScholar/doDelete?id=$result->id_announcement"."&link=$link").'" class="btn btn-danger btn-sm" ><i class="fa fa-bitbucket  fa-fw"></i></a></td>';
 		

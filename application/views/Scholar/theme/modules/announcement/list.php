@@ -19,12 +19,12 @@
 				continue; // Skip this iteration of the loop
 			}
 			?>
-<div class="card p-2 bg-light text-dark">
+<div class="card p-2 bg-light text-dark" >
     <div class="card-body">
 		<div id="accordion_<?php echo $result->id_announcement ?>">
         <h3>Announcement &nbsp;<label><?php echo $this->Dates->toDateFormat($result->date_posted) ?></label></h3>
         <div class="form-group"><?php echo $result->announcement_desc ?></div> 
-		<form class="form-horizontal span6" action="../SubScholar/announcement/announceScholar/doComment" method="POST">
+		<form class="form-horizontal span6" action="../SubScholar/announcement/announceScholar/doComment<?php echo (!empty($link)) ? "?link=$link" : '' ?>" method="POST">
         <div class="comment-box">
             <div class="form-group">
                 <label class="bmd-label-floating">Write a comment...:</label>
@@ -41,29 +41,28 @@
 			<a class="text-primary" data-toggle="collapse" data-target="#collapseDetails_<?php echo $result->id_announcement ?>" aria-expanded="false" aria-controls="collapseDetails_<?php echo $result->id_announcement ?>">
                                     <b>Show Comments</b>
 		</a>
-		<div class="collapse p-2" id="collapseDetails_<?php echo $result->id_announcement ?>" data-parent="#accordion_<?php echo $result->id_announcement ?>" style="max-height: 500px; overflow-y: scroll; background-color: #e8e8e8;">
+		<div class="collapse p-2" id="collapseDetails_<?php echo $result->id_announcement ?>" data-parent="#accordion_<?php echo $result->id_announcement ?>" style="max-height: 500px; overflow-y: scroll; background-color: #e8e8e8; color:black !important;">
  <?php   
-        $mydb = $this->db->query("SELECT * FROM `comments` ORDER BY comment_id DESC");
+        $mydb = $this->db->query("SELECT * FROM `comments` WHERE announcement_id = $result->id_announcement ORDER BY comment_created_at DESC");
         $cur = $mydb->result();
 
         foreach ($cur as $res) {
           if ($res->comment_status == 'hidden') {
             continue; // Skip this iteration of the loop
           }
-          if ($res->announcement_id == $result->id_announcement) {
             $reply = $_SESSION['USERID'];
             $person = $_SESSION['NAME'];
-            if ($res->who_commented == $reply) {
+            // if ($res->who_commented == $reply) {
               
           
               $mydb = $this->db->query("SELECT * FROM `user_acc` WHERE USERID = $reply ");
               $replay = $mydb->result();
 			  
-		  echo '<div class="p-3" style="max-height: 250px; overflow-y: scroll; background-color: #bdbdbd;">';
+		  echo '<div class="p-3" style="max-height: 250px; overflow-y: scroll; background-color: #bdbdbd; color: black;">';
               foreach ($replay as $reply) {
     
 
-          echo '<div class="comment-box1">';
+          echo '<div class="comment-box1" style="color:black !important;">';
           echo '<h5><span class="commenter">' . $reply->NAME . '</span> <label>' . $this->Dates->toDateFormat($res->comment_created_at) . '</label></h5>';
           echo '<h4>' . $res->comment_text . '</h4>';
               }
@@ -105,8 +104,8 @@
           echo '<button class="btn btn-info btn-round" name="save" type="submit">Reply</button>';
           echo '</form><hr/>';
 		  
-        }
-      }
+        
+      // }
     }
       ?>
 		</div>
