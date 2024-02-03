@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Your Page Title</title>
-</head>
-<body>
-  <style>
+<?php
+			// if (!isset($_SESSION['TYPE'])=='Administrator'){
+		//     redirect(web_root."index.php");
+		//    }
+
+		?>
+
+<style>
     /* Your CSS styles here */
     .dropdown {
       position: relative;
@@ -40,29 +41,14 @@
       display: block;
     }
   </style>
-
-  <!-- Your HTML code here -->
-  <tr>
-    <!-- ... your existing HTML code ... -->
-  </tr>
-
-</body>
-</html>
-
-		<?php
-			// if (!isset($_SESSION['TYPE'])=='Administrator'){
-		//     redirect(web_root."index.php");
-		//    }
-
-		?>
-			<div class="row">
+<div class="row">
 			<div class="col-lg-12"> 
-					<h3 >Adding Documents <small>|  <label class="label label-xs" style="font-size: 20px"><a href="documents?view=add">  <i class="fa fa-plus-circle fw-fa" style="color: #00bcd4"> New</a></i></label> |</small></h3> 
+					<h3 >Adding Documents <small>|  <label class="label label-xs" style="font-size: 20px"><a href="<?php echo base_url("Scholar/documents?view=add")?>">  <i class="fa fa-plus-circle fw-fa" style="color: #00bcd4"> New</a></i></label> |</small></h3> 
 					
 					</div>
 				</div>
 						<form action="controller.php?action=delete" Method="POST">  					
-						<table id="example" class="table table-hover" cellspacing="0" style="font-size:12px" >
+						<table id="example" class="table table-hover " cellspacing="0" style="font-size:12px" >
 						
 						<thead>
 							<tr>
@@ -71,12 +57,13 @@
 								<th>Document Category</th> 
 								<!-- if ito ba ay tor, Summary of Grades or etc -->
 								<th>Year</th>
+								
 								<th>Date uploaded</th>	
 								<th>Actions</th>	
 							</tr>	
 						</thead> 
 						<tbody>
-							<?php 
+						<?php 
 								
 							
 								foreach ($cur as $result) {
@@ -85,8 +72,8 @@
 									}
 
 								if ($result->report_sender == $user){
-						
-									
+
+
 									echo '<tr>';
 									echo '<td width="5%" align="center"></td>';
 									echo '<td> '. $result->document_name.'</td>';
@@ -107,7 +94,7 @@
 									echo '</div>';
 									echo '</td>';
 									echo '</tr>';
-									
+
 
 							} 
 						}

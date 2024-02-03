@@ -11,7 +11,7 @@ $url = "SubAdmin/scholar/scholar1/doDelete";
 			</div>
 				
 <form class="row g-3" action="<?php echo base_url($url)?>" method="POST">
-	<table id="example"  class="table table-striped table-bordered table-hover" cellspacing="0" style="font-size:12px" >
+	<table id="example"  class="table table-hover" cellspacing="0" style="font-size:12px" >
 						
 					<thead>
 						<tr> 
@@ -46,24 +46,12 @@ $url = "SubAdmin/scholar/scholar1/doDelete";
 							echo '<td>'. $result->program.'</td>';  
 							echo '<td>'. $result->phone_num.'</td>';
 
-							// $query = "SELECT * FROM `tblstudent` s, tblcourse c,tbldepartment d WHERE  s.COURSE=c.COURSEID AND   s.DEPARTMENT=d.DEPARTMENTID";
-							// $mydb->setQuery($query);
-							// $cur = $mydb->loadResultList();
-
-							// foreach ($cur as $result) {
-							// echo '<tr>'; 
-							// echo '<td width="5%" align="center"></td>';
-							// // echo '<td  width="13%"><input type="checkbox" name="selector[]" id="selector[]" value="'.$result->IDNO. '"/>' .$result->IDNO .'</td>';
-							// 	echo '<td  width="13%"><input type="checkbox" name="selector[]" id="selector[]" value="'.$result->IDNO. '"/>' .$result->IDNO .'</td>';
-							// // echo '<td ><a href="index.php?view=view&id="><img src="'. $result->image.'" width="60" height="60" title="'.$result->LNAME.'"/></a></td>';
-							// echo '<td>'. $result->FNAME.' ' . $result->LNAME .'</td>';
-							// // echo '<td>'. $result->LASTNAME.'</td>';
-							// // echo '<td>'. $result->CITYADDRESS.'</td>'; 
-							// echo '<td>'.$result->DESCRIPTION . '(' . $result->COURSE.')</td>'; 
-							// echo '<td>'. $result->DEPARTMENT.'</td>';  
-							// echo '<td>'. $result->PHONE.'</td>';
-							echo '<td  width="10%" > <a title="Edit" href="'.base_url($link."/scholar?view=update&id=".$result->scholar_id).'" class="btn btn-info btn-xs" ><i class="fa fa-pencil fa-fw"></i></a>
-										<a title="View Inormation" href="'.base_url($link."/scholar?view=view&id=".$result->scholar_id).'" class="btn btn-default btn-xs "><i class="fa fa-info fa-fw"></i></a></td>';
+							echo '<td width="10%" class="d-flex justify-content-center">
+									<a title="View Information"  class="btn btn-default btn-sm mr-1" href="'.base_url($link."/scholar?view=view&id=".$result->scholar_id).'" ><i class="fa fa-eye fa-fw"></i></a>
+									<a title="Approved" class="btn btn-success btn-sm mr-1" href="'.base_url("SubAdmin/scholar/scholar1/doActivate?status=on&id=".$result->scholar_id."&link=".$link).'"><i class="fa fa-check fa-fw"></i></a>
+									<a title="Reject" class="btn btn-danger btn-sm" href="'.base_url("SubAdmin/scholar/scholar1/doActivate?status=off&id=".$result->scholar_id."&link=".$link).'"><i class="fa fa-times fa-fw"></i></a>
+						  			</td>';
+				
 							// echo '<td  width="10%" ><a title="View Inormation" href="index.php?view=view&id='.$result->IDNO.'" class="btn btn-success btn-xs "><i class="fa fa-info fa-fw"></i></a></td>';
 							
 							echo '<td  width="10%" >

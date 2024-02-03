@@ -1,5 +1,4 @@
-
-  <title>Add New Documents</title>
+<title>Add New Documents</title>
   <style>
     /* Add any additional styles as needed */
     .custom-file-upload {
@@ -43,10 +42,10 @@
               <input type="file" id="fileToUpload" name="fileToUpload" onchange="displaySelectedFile(this)" accept=".pdf,.doc,.docx,image/*">
               <label for="fileToUpload" id="fileToUpload_nmae">Choose File</label>
             </div>
-          <?php } ?>
+
+            <?php } ?>
         </div>
       </div>
-
       <div class="col-md-6">
         <div class="form-group">
           <label class="bmd-label-floating">Document Category</label>
@@ -85,6 +84,7 @@
       </div>
     </div>
 
+
     <div class="row">
       <div class="col-md-12">
         <button class="btn btn-info btn-round" id="save" name="save" type="submit"><strong>Save</strong></button>
@@ -100,15 +100,12 @@
 
     if (file) {
       fileLabel.textContent = file.name;
-      
+
     console.log(file.name)
     } else {
       fileLabel.textContent = 'No file chosen';
-      
+
     console.log(0)
     }
   }
 </script>
-
-</body>
-</html>
