@@ -34,6 +34,10 @@ class Admin extends CI_Controller {
         $this->load->model("Initialize/Dates");
         
         $this->announcement = new announcementSub();
+        
+        $this->scholar = new ScholarSub();
+
+        $this->user = new userSub();
     }
 
     function countNotif() {
@@ -93,7 +97,13 @@ class Admin extends CI_Controller {
     public function announcement() {
         $this->announcement->announcementController($this,"Admin");
     }
+    public function Scholar() {
+        $this->scholar->scholarController($this,"Admin");
+    }
 
+    public function user() {
+        $this->user->userController($this,"Admin");
+    }
     public function Dashboard() {
         
         $title = "";
