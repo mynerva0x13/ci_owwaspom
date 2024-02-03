@@ -1,3 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Page Title</title>
+</head>
+<body>
+  <style>
+    /* Your CSS styles here */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dots-icon {
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+
+  <!-- Your HTML code here -->
+  <tr>
+    <!-- ... your existing HTML code ... -->
+  </tr>
+
+</body>
+</html>
+
 		<?php
 			// if (!isset($_SESSION['TYPE'])=='Administrator'){
 		//     redirect(web_root."index.php");
@@ -11,15 +62,17 @@
 					</div>
 				</div>
 						<form action="controller.php?action=delete" Method="POST">  					
-						<table id="example" class="table table-hover table-bordered" cellspacing="0" style="font-size:12px" >
+						<table id="example" class="table table-hover" cellspacing="0" style="font-size:12px" >
 						
 						<thead>
 							<tr>
 								<th>No.</th>
-								<th>File Name</th>
-								<th>Description</th>
+								<th>Name</th>
+								<th>Document Category</th> 
+								<!-- if ito ba ay tor, Summary of Grades or etc -->
 								<th>Year</th>
-								<th>Semester</th>	
+								<th>Date uploaded</th>	
+								<th>Actions</th>	
 							</tr>	
 						</thead> 
 						<tbody>
@@ -33,13 +86,29 @@
 
 								if ($result->report_sender == $user){
 						
+									
 									echo '<tr>';
 									echo '<td width="5%" align="center"></td>';
 									echo '<td> '. $result->document_name.'</td>';
 									echo '<td> '. $result->document_description.'</td>';
 									echo '<td> '. $result->year_level.'</td>';
 									echo '<td> '. $result->semester.'</td>';
+									echo '<td>';
+									// Vertical three dots icon
+									echo '<div class="dropdown">';
+									echo '<div class="dots-icon">&#8942;</div>';
+									// Popup menu for edit, delete, view, and download
+									echo '<div class="dropdown-content">';
+									echo '<a href="#" onclick="editDocument(' . $result->document_id . ')">Edit</a>';
+									echo '<a href="#" onclick="viewDocument(' . $result->document_id . ')">View</a>';
+									echo '<a href="#" onclick="deleteDocument(' . $result->document_id . ')">Delete</a>';
+									echo '<a href="#" onclick="downloadDocument(' . $result->document_id . ')">Download</a>';
+									echo '</div>';
+									echo '</div>';
+									echo '</td>';
 									echo '</tr>';
+									
+
 							} 
 						}
 							?>
