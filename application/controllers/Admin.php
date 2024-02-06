@@ -98,6 +98,7 @@ $this->scholar = new ScholarSub();
     public function Scholar() {
         $this->scholar->scholarController($this,"Staff");
     }
+    //Hello world
     public function Dashboard() {
         
         $title = "";
