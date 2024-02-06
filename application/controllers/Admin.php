@@ -34,9 +34,7 @@ class Admin extends CI_Controller {
         $this->load->model("Initialize/Dates");
         
         $this->announcement = new announcementSub();
-        
         $this->scholar = new ScholarSub();
-
         $this->user = new userSub();
     }
 

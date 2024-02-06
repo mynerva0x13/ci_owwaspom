@@ -32,15 +32,9 @@ $url = "SubAdmin/scholar/scholar1/doDelete";
 
 				<tbody>
 						<?php 
-						$adminButton = null;
+						
 							// per place yung staff
 							foreach ($cur as $result) {
-				
-								if($link!="Staff") {
-									$adminButton = '
-									<a title="Approved" class="btn btn-success btn-sm mr-1" href="'.base_url("SubAdmin/scholar/scholar1/doActivate?status=on&id=".$result->scholar_id."&link=".$link).'"><i class="fa fa-check fa-fw"></i></a>
-									<a title="Reject" class="btn btn-danger btn-sm" href="'.base_url("SubAdmin/scholar/scholar1/doActivate?status=off&id=".$result->scholar_id."&link=".$link).'"><i class="fa fa-times fa-fw"></i></a>
-								';}
 							echo '<tr>';
 							echo '<td width="5%" align="center"></td>';
 							echo '<td  width="13%"><input type="checkbox" name="selector[]" id="selector[]" value="'.$result->scholar_id. '"/></td>';
@@ -52,13 +46,17 @@ $url = "SubAdmin/scholar/scholar1/doDelete";
 							echo '<td>'. $result->program.'</td>';  
 							echo '<td>'. $result->phone_num.'</td>';
 
-							echo '<td width="10%" class="d-flex justify-content-center">
-									<a title="View Information"  class="btn btn-default btn-sm mr-1" href="'.base_url($link."/scholar?view=view&id=".$result->scholar_id).'" ><i class="fa fa-eye fa-fw"></i></a>
-	'.$adminButton.'
-						  			</td>';
+							// echo '<td width="10%" class="d-flex justify-content-center">
+							// 		<a title="View Information"  class="btn btn-default btn-sm mr-1" href="'.base_url($link."/scholar?view=view&id=".$result->scholar_id).'" ><i class="fa fa-eye fa-fw"></i></a>
+							// 		<a title="Approved" class="btn btn-success btn-sm mr-1" href="'.base_url("SubAdmin/scholar/scholar1/doActivate?status=on&id=".$result->scholar_id."&link=".$link).'"><i class="fa fa-check fa-fw"></i></a>
+							// 		<a title="Reject" class="btn btn-danger btn-sm" href="'.base_url("SubAdmin/scholar/scholar1/doActivate?status=off&id=".$result->scholar_id."&link=".$link).'"><i class="fa fa-times fa-fw"></i></a>
+						  	// 		</td>';
 				
 							// echo '<td  width="10%" ><a title="View Inormation" href="index.php?view=view&id='.$result->IDNO.'" class="btn btn-success btn-xs "><i class="fa fa-info fa-fw"></i></a></td>';
 							
+							echo '<td width="10%" class="d-flex justify-content-center">
+							<a title="View Information"  class="btn btn-default btn-sm mr-1" href="'.base_url($link."/scholar?view=view&id=".$result->scholar_id).'" ><i class="fa fa-eye fa-fw"></i></a>
+							</td>';
 							echo '<td  width="10%" >
 								<a style="font-size:12px" class="btn btn-info btn-xs" href="'.base_url("SubAdmin/scholar/scholar1/doActivate?status=on&id=".$result->scholar_id."&link=".$link).'">Activate</a>
 								<a style="font-size:10px" class="btn btn-default btn-xs " href="'.base_url("SubAdmin/scholar/scholar1/doActivate?status=off&id=".$result->scholar_id."&link=".$link).'">Deactivate</a>
