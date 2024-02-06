@@ -32,20 +32,21 @@ $url = "SubAdmin/scholar/scholar1/doDelete";
 
 				<tbody>
 						<?php 
-						
-							// per place yung staff
+													// per place yung staff
 							foreach ($cur as $result) {
+								
+								$activation = $this->db->query("SELECT account_status FROM user_acc WHERE USERID = $result->user_id")->result();
+
+$disableButton = ($activation[0]->account_status==="deactivate") ? "disabled" : "";
 							echo '<tr>';
 							echo '<td width="5%" align="center"></td>';
-							echo '<td  width="13%"><input type="checkbox" name="selector[]" id="selector[]" value="'.$result->scholar_id. '"/></td>';
-							// echo '<td ><a href="index.php?view=view&id="><img src="'. $result->image.'" width="60" height="60" title="'.$result->LNAME.'"/></a></td>';
-							echo '<td>'. $result->firstname.' ' . $result->lastname .'</td>';
-							// echo '<td>'. $result->LASTNAME.'</td>';
-							// echo '<td>'. $result->CITYADDRESS.'</td>'; 
-							echo '<td>'. $result->Course.'</td>'; 
-							echo '<td>'. $result->program.'</td>';  
-							echo '<td>'. $result->phone_num.'</td>';
+							echo '<td width="13%"><input type="checkbox" name="selector[]" id="selector[]" value="' . $result->scholar_id . '"/></td>';
+							echo '<td>' . $result->firstname . ' ' . $result->lastname . '</td>';
+							echo '<td>' . $result->Course . '</td>'; 
+							echo '<td>' . $result->program . '</td>';  
+							echo '<td>' . $result->phone_num . '</td>';
 
+<<<<<<< Updated upstream
 							// $query = "SELECT * FROM `tblstudent` s, tblcourse c,tbldepartment d WHERE  s.COURSE=c.COURSEID AND   s.DEPARTMENT=d.DEPARTMENTID";
 							// $mydb->setQuery($query);
 							// $cur = $mydb->loadResultList();
@@ -69,8 +70,27 @@ $url = "SubAdmin/scholar/scholar1/doDelete";
 							echo '<td  width="10%" >
 								<a style="font-size:12px" class="btn btn-info btn-xs" href="'.base_url("SubAdmin/scholar/scholar1/doActivate?status=on&id=".$result->scholar_id."&link=".$link).'">Activate</a>
 								<a style="font-size:10px" class="btn btn-default btn-xs " href="'.base_url("SubAdmin/scholar/scholar1/doActivate?status=off&id=".$result->scholar_id."&link=".$link).'">Deactivate</a>
+=======
+			?>
+
+			<td class='d-flex align-items-center justify-content-center'>
+			<button title='View Information' class='btn btn-default' onclick="location.href='<?php echo base_url($link . "/scholar?view=view&id=" . $result->scholar_id)?>'"  <?php echo $disableButton ?>><i class="fa fa-eye fa-fw"></i></button>
+			<button title='Approved' class='btn btn-success' onclick="location.href='<?php echo base_url("SubAdmin/scholar/scholar1/doActivate?status=on&id=" . $result->scholar_id . "&link=" . $link) ?> '" <?php echo $disableButton ?>><i class="fa fa-check fa-fw"></i></button>
+			<button title='Reject' class='btn btn-danger' onclick="location.href='<?php echo base_url("SubAdmin/scholar/scholar1/doActivate?status=off&id=" . $result->scholar_id . "&link=" . $link) ?> '" <?php echo $disableButton ?>><i class="fa fa-times fa-fw"></i></button>
+		  </td>";
+	<?php
+            if($activation[0]->account_status==="activate" || $activation[0]->account_status==="active") {
+                echo '<td>
+                <a style="font-size:10px" class="btn btn-default btn-xs" href="' . base_url("SubAdmin/scholar/scholar1/doActivate?status=off&id=" . $result->scholar_id . "&link=" . $link) . '">Deactivate</a>
+>>>>>>> Stashed changes
 							</td>';
-				// echo '<td  width="10%" ><a title="View Inormation" href="index.php?view=view&id='.$result->IDNO.'" class="btn btn-success btn-xs "><i class="fa fa-info fa-fw"></i></a></td>';
+				}
+            else if($activation[0]->account_status==="deactivate") {
+                echo '<td> <a style="font-size:10px" class="btn btn-primary btn-xs" href="' . base_url("SubAdmin/scholar/scholar1/doActivate?status=on&id=" . $result->scholar_id . "&link=" . $link) . '">Activate</a>
+            </td>';
+            }
+          
+            // echo '<td width="10%" ><a title="View Inormation" href="index.php?view=view&id='.$result->IDNO.'" class="btn btn-success btn-xs "><i class="fa fa-info fa-fw"></i></a></td>';
 							echo '</tr>';
 						} 
 						?>
