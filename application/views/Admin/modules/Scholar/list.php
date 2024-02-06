@@ -46,31 +46,6 @@ $disableButton = ($activation[0]->account_status==="deactivate") ? "disabled" : 
 							echo '<td>' . $result->program . '</td>';  
 							echo '<td>' . $result->phone_num . '</td>';
 
-<<<<<<< Updated upstream
-							// $query = "SELECT * FROM `tblstudent` s, tblcourse c,tbldepartment d WHERE  s.COURSE=c.COURSEID AND   s.DEPARTMENT=d.DEPARTMENTID";
-							// $mydb->setQuery($query);
-							// $cur = $mydb->loadResultList();
-
-							// foreach ($cur as $result) {
-							// echo '<tr>'; 
-							// echo '<td width="5%" align="center"></td>';
-							// // echo '<td  width="13%"><input type="checkbox" name="selector[]" id="selector[]" value="'.$result->IDNO. '"/>' .$result->IDNO .'</td>';
-							// 	echo '<td  width="13%"><input type="checkbox" name="selector[]" id="selector[]" value="'.$result->IDNO. '"/>' .$result->IDNO .'</td>';
-							// // echo '<td ><a href="index.php?view=view&id="><img src="'. $result->image.'" width="60" height="60" title="'.$result->LNAME.'"/></a></td>';
-							// echo '<td>'. $result->FNAME.' ' . $result->LNAME .'</td>';
-							// // echo '<td>'. $result->LASTNAME.'</td>';
-							// // echo '<td>'. $result->CITYADDRESS.'</td>'; 
-							// echo '<td>'.$result->DESCRIPTION . '(' . $result->COURSE.')</td>'; 
-							// echo '<td>'. $result->DEPARTMENT.'</td>';  
-							// echo '<td>'. $result->PHONE.'</td>';
-							echo '<td  width="10%" > <a title="Edit" href="'.base_url($link."/scholar?view=update&id=".$result->scholar_id).'" class="btn btn-info btn-xs" ><i class="fa fa-pencil fa-fw"></i></a>
-										<a title="View Inormation" href="'.base_url($link."/scholar?view=view&id=".$result->scholar_id).'" class="btn btn-default btn-xs "><i class="fa fa-info fa-fw"></i></a></td>';
-							// echo '<td  width="10%" ><a title="View Inormation" href="index.php?view=view&id='.$result->IDNO.'" class="btn btn-success btn-xs "><i class="fa fa-info fa-fw"></i></a></td>';
-							
-							echo '<td  width="10%" >
-								<a style="font-size:12px" class="btn btn-info btn-xs" href="'.base_url("SubAdmin/scholar/scholar1/doActivate?status=on&id=".$result->scholar_id."&link=".$link).'">Activate</a>
-								<a style="font-size:10px" class="btn btn-default btn-xs " href="'.base_url("SubAdmin/scholar/scholar1/doActivate?status=off&id=".$result->scholar_id."&link=".$link).'">Deactivate</a>
-=======
 			?>
 
 			<td class='d-flex align-items-center justify-content-center'>
@@ -82,7 +57,6 @@ $disableButton = ($activation[0]->account_status==="deactivate") ? "disabled" : 
             if($activation[0]->account_status==="activate" || $activation[0]->account_status==="active") {
                 echo '<td>
                 <a style="font-size:10px" class="btn btn-default btn-xs" href="' . base_url("SubAdmin/scholar/scholar1/doActivate?status=off&id=" . $result->scholar_id . "&link=" . $link) . '">Deactivate</a>
->>>>>>> Stashed changes
 							</td>';
 				}
             else if($activation[0]->account_status==="deactivate") {
