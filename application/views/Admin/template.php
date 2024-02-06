@@ -29,12 +29,12 @@
     </li>
 
     <li class="nav-item <?php echo ($this->Func_Misc->currentpage_admin()  == 'modstudent') ? 'active' : ''; ?>">
-      <a class="nav-link" href="<?php echo base_url("admin/modules/modstudent/index.php")?>">
+      <a class="nav-link" href="<?php echo base_url("admin/scholar")?>">
         <p>Scholar</p>
       </a>
     </li>
     <li class="nav-item <?php echo ($this->Func_Misc->currentpage_admin() == 'user') ? 'active' : ''; ?>">
-      <a class="nav-link" href="<?php echo base_url("admin/modules/user/index.php") ?>">
+      <a class="nav-link" href="<?php echo base_url("admin/user") ?>">
       
         <p>Users</p>
       </a>
