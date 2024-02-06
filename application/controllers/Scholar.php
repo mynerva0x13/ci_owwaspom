@@ -37,7 +37,7 @@ class Scholar extends CI_Controller {
     }
     
     function accountSession() {
-        if(!$_SESSION['loginStatus']) {
+        if(!$_SESSION['loginStatus'] || empty($_SESSION)) {
             redirect('login');
         }
     }

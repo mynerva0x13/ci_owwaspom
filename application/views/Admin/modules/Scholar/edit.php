@@ -1,5 +1,5 @@
 <?php
-$url = "SubAdmin/scholar/scholar1/doEdit?id=".$con;
+$url = "SubAdmin/scholar/scholar1/doEdit?id=".$con."link=$link2";
 
 ?>
 

@@ -4,7 +4,7 @@ $url = "SubAdmin/scholar/scholar1/doDelete";
 ?>
 	<div class="row">
 		<div class="col-lg-12"> 
-				<h3 >Scholars <small>|  <label class="label label-xs" style="font-size: 20px"><a href="<?php echo base_url("Staff/scholar?view=add1")?>">  <i class="fa fa-plus-circle fw-fa" style="color: #00bcd4">New</a></i></label> |</small></h3> 
+				<h3 >Scholars <small>|  <label class="label label-xs" style="font-size: 20px"><a href="<?php echo base_url("$link/scholar?view=add1")?>">  <i class="fa fa-plus-circle fw-fa" style="color: #00bcd4">New</a></i></label> |</small></h3> 
 				
 				</div>
 				<!-- /.col-lg-12 -->
@@ -35,7 +35,7 @@ $url = "SubAdmin/scholar/scholar1/doDelete";
 													// per place yung staff
 							foreach ($cur as $result) {
 								
-								$activation = $this->db->query("SELECT account_status FROM user_acc WHERE USERID = $result->user_id")->result();
+								$activation = $this->db->query("SELECT account_status,account_approval FROM user_acc WHERE USERID = $result->user_id")->result();
 
 $disableButton = ($activation[0]->account_status==="deactivate") ? "disabled" : "";
 							echo '<tr>';
@@ -49,11 +49,13 @@ $disableButton = ($activation[0]->account_status==="deactivate") ? "disabled" : 
 			?>
 
 			<td class='d-flex align-items-center justify-content-center'>
-			<button title='View Information' class='btn btn-default' onclick="location.href='<?php echo base_url($link . "/scholar?view=view&id=" . $result->scholar_id)?>'"  <?php echo $disableButton ?>><i class="fa fa-eye fa-fw"></i></button>
-			<button title='Approved' class='btn btn-success' onclick="location.href='<?php echo base_url("SubAdmin/scholar/scholar1/doActivate?status=on&id=" . $result->scholar_id . "&link=" . $link) ?> '" <?php echo $disableButton ?>><i class="fa fa-check fa-fw"></i></button>
-			<button title='Reject' class='btn btn-danger' onclick="location.href='<?php echo base_url("SubAdmin/scholar/scholar1/doActivate?status=off&id=" . $result->scholar_id . "&link=" . $link) ?> '" <?php echo $disableButton ?>><i class="fa fa-times fa-fw"></i></button>
+			<button type="button" title='View Information' class='btn btn-default' onclick="location.href='<?php echo base_url($link . "/scholar?view=view&id=" . $result->scholar_id)?>'"  <?php echo $disableButton ?>><i class="fa fa-eye fa-fw"></i></button>
+			<?php if($activation[0]->account_approval==="pending"): ?>
+			<button type="button" title="Approved" class="btn btn-success" onclick="location.href='<?php echo base_url("SubAdmin/scholar/scholar1/doVerify?status=accept&id=$result->scholar_id&link=$link") ?>'" <?php echo $disableButton ?>><i class="fa fa-check fa-fw"></i></button>
+			<button type="button" title="Reject" class="btn btn-danger" onclick="location.href='<?php echo base_url("SubAdmin/scholar/scholar1/doVerify?status=deny&id=$result->scholar_id&link=$link") ?>'" <?php echo $disableButton ?>><i class="fa fa-times fa-fw"></i></button>
 		  </td>";
 	<?php
+	endif;
             if($activation[0]->account_status==="activate" || $activation[0]->account_status==="active") {
                 echo '<td>
                 <a style="font-size:10px" class="btn btn-default btn-xs" href="' . base_url("SubAdmin/scholar/scholar1/doActivate?status=off&id=" . $result->scholar_id . "&link=" . $link) . '">Deactivate</a>
