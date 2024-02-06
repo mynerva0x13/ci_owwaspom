@@ -7,7 +7,7 @@ if(!empty($_GET['view']) && $_GET['view']=="update") {
     $desc = $con->desc;
 }
 else {
-    $url = "SubAdmin/scholar/scholar1/doInsert";
+    $url = "SubAdmin/scholar/scholar1/doInsert?link=$link2";
 }
 ?>
 <style>

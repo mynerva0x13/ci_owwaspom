@@ -152,7 +152,7 @@ class scholar1 extends CI_Controller
                         echo '<script>
                             var errorMessage = "Email already exists!";
                             alert(errorMessage);
-                            window.location.href = "index.php?view=add1";
+                            window.location.href = "'.base_url($this->link."/scholar").'";
                         </script>';
                         exit;
                     }
@@ -166,6 +166,7 @@ class scholar1 extends CI_Controller
                 $user1->staff_address = $region;
                 $user1->create();
     
+                $userAccId = $user1->getLastInsertId();
                 $user2 = new User();
                 $user2->NAME = $OFWname;
                 $user2->username = $OFW_email;
@@ -174,10 +175,7 @@ class scholar1 extends CI_Controller
                 $user2->account_status = $account_status;
                 $user2->staff_address = $region;
                 $user2->create();
-    
-                $userAccId = $user1->getLastInsertId();
 
-                echo $userAccId;
 
                 
                 if ($userAccId) {
@@ -310,7 +308,7 @@ class scholar1 extends CI_Controller
                     )),
                     'expire' => 1
                 ));
-                // redirect("$this->link/scholar");
+                redirect("$this->link/scholar");
                 }
             }
     }
