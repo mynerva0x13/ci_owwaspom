@@ -1,4 +1,12 @@
+<?php
 
+if(!empty($link)) {
+  $url='SubScholar/profile/acceptEdit/editfame'.((!empty($link)) ? "?link=$link&id=$singlestudent->request_info_id" : "");
+}
+else {
+  $url='SubScholar/profile/editUser/editfam';
+}
+?>
 <style type="text/css">
   .sidebar-left .main {
     float: right;
@@ -29,7 +37,7 @@
 </style>
 
 
-<form class="form-horizontal span6" action="<?php echo base_url('SubScholar/profile/editUser/editUser/editfam') ?>" method="POST">
+<form class="form-horizontal span6" action="<?php echo base_url($url) ?>" method="POST">
 
 
   <div class="row">
@@ -44,7 +52,7 @@
     <div class="col-md-2">
       <div class="form-group">
         <label class="bmd-label-floating">Number of Siblings:</label>
-        <input class="form-control input-sm" id="" name="" type="text" value="" required>
+        <input class="form-control input-sm" id="number_sibling" name="number_sibling" type="text" value="<?php echo $singlestudent->number_siblings ?>" required>
       </div>
     </div>
   </div>

@@ -1,11 +1,11 @@
 <?php
-// @$user_id = $_GET['id'];
 
-// if ($user_id == '') {
-//   redirect("index.php");
-
-
-// }
+if(!empty($link)) {
+  $url='SubScholar/profile/acceptEdit/doEditme'.((!empty($link)) ? "?link=$link&id=$singlestudent->request_info_id" : "");
+}
+else {
+  $url='SubScholar/profile/editUser/doEditme';
+}
 ?>
 
 
@@ -43,7 +43,7 @@
 </style>
 
 			
-<form class="form-horizontal span6" action="<?php echo base_url('SubScholar/profile/editUser/doEditme') ?>" method="POST">
+<form class="form-horizontal span6" action="<?php echo base_url($url) ?>" method="POST">
 
 
   <div class="row">
@@ -189,8 +189,14 @@
         <button class="btn btn-success btn-floating" name="save" type="submit">Save</button>
       </div>
       <div class="col-md-2" style="margin-left:45px">
+<!--       
         <button class="btn btn-danger btn-floating" name="cancel" value="Cancel"
-          onclick="history.back()">Cancel</button>
+          onclick="history.back()">Cancel</button> -->
+
+          <?php
+          if(!empty($link)) echo "<a class='btn btn-danger btn-floating' href='".base_url("$link/RequestUpdate")."'>Back</a>";
+          else echo ' <button class="btn btn-danger btn-floating" name="cancel" value="Cancel" onclick="history.back()">Cancel</button>';
+  ?>
       </div>
     </div>
   </div>

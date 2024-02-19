@@ -51,8 +51,8 @@ class User extends CI_Model {
     }
     public function update($id = "") {
         $attributes = $this->sanitized_attributes();
-        $this->db->where("USERID", $id);
-        $this->db->update("user_acc", $attributes);
+        $this->db->where("scholar_id", $id);
+        $this->db->update($this->table, $attributes);
 
         
     }

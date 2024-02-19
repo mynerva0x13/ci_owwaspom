@@ -56,8 +56,12 @@ class Student extends CI_Model {
         return $clean_attributes;
     }
 
-    public function save() {
-        return isset($this->id) ? $this->reply() : $this->create();
+    public function update($id = 0) {
+        // print_r($this->sanitized_attributes());
+        $attributes = $this->sanitized_attributes();
+        $this->db->where('scholar_id', $id);
+        $this->db->update($this->tblname, $attributes);
+        return $this->db->affected_rows() > 0;
     }
 
     public function create() {

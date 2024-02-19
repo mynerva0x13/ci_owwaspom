@@ -1,5 +1,14 @@
 
- 
+<?php
+
+if(!empty($link)) {
+  $url='SubScholar/profile/acceptEdit/doEditeduc'.((!empty($link)) ? "?link=$link&id=$singlestudent->request_info_id" : "");
+}
+else {
+  $url='SubScholar/profile/editUser/doEditeduc';
+}
+?>
+
  <style type="text/css">
 .sidebar-left .main{
   float:right;
@@ -27,7 +36,7 @@ select {
 </style>
  
 
-<form class="form-horizontal span6" action="<?php echo base_url('SubScholar/profile/editUser/editUser/doEditeduc') ?>" method="POST">
+<form class="form-horizontal span6" action="<?php echo base_url($url) ?>" method="POST">
   
         
           <div class="row">
@@ -121,7 +130,7 @@ select {
                    <div class="col-md-4">
                     <div class="form-group">
                      <label class="bmd-label-floating">Teriary School:</label> 
-                         <input class="form-control input-sm" id="tertiary_school" name="tertiary_school"   type="text" value="<?php echo $singlestudent->school ; ?>" required>
+                         <input class="form-control input-sm" id="tertiary_school" name="tertiary_school"   type="text" value="<?php echo $singlestudent->tertiary_school ; ?>" required>
                       
                         </div>    
                     </div>

@@ -14,6 +14,8 @@ require_once APPPATH.'controllers/SubStaff/reports/SubSubmitted_Documents.php';
 require_once APPPATH.'controllers/SubStaff/reports/SubAttended_activities.php';
 
 require_once APPPATH.'controllers/SubAdmin/calendar/SubCalendar.php';
+require_once APPPATH.'controllers/SubScholar/profile/profileStaff.php';
+require_once APPPATH.'controllers/SubAdmin/SubRequest/SubRequest.php';
 
 class Staff extends CI_Controller {
 
@@ -46,9 +48,11 @@ class Staff extends CI_Controller {
         $this->reports = new SublistofScholar();
         $this->user = new userSub();
 
+        $this->profile = new profileStaff();
         $this->Submitted_Documents = new SubSubmitted_Documents();
         $this->Attended_activities = new SubAttended_activities();
         $this->calendars = new SubCalendar();
+        $this->req = new SubRequest();
     }
     function accountSession() {
         if(!$_SESSION['loginStatus']) {
@@ -159,8 +163,14 @@ class Staff extends CI_Controller {
     public function Calendar() {
         $this->calendars->userCalendar($this,"Staff");
     }
-
-
+    public function RequestUpdate() {
+        
+        $this->req->editRequest($this,"Staff");
+    }
+    public function studentProfile() {
+        $this->profile->profileController($this,"Staff");
+      }
+  
     public function notification() {
         
     $id = $_SESSION['USERID'];
