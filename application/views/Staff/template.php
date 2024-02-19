@@ -40,10 +40,10 @@
       </a>
     </li>
 
-    <li class="nav-item <?php echo ($this->Func_Misc->currentpage_admin() == 'calendar') ? 'active' : ''; ?>">
-      <a class="nav-link" href="<?php echo base_url("Staff/Calendar") ?>">
+    <li class="nav-item <?php echo ($this->Func_Misc->currentpage_admin() == 'RequestUpdate') ? 'active' : ''; ?>">
+      <a class="nav-link" href="<?php echo base_url("Staff/RequestUpdate") ?>">
       
-        <p>Calendars</p>
+        <p>Request Update</p>
       </a>
     </li>
 

@@ -50,7 +50,7 @@ $disableButton = ($activation[0]->account_status==="deactivate") ? "disabled" : 
 
 			<td class='d-flex align-items-center justify-content-center'>
 			<button type="button" title='View Information' class='btn btn-default' onclick="location.href='<?php echo base_url($link . "/scholar?view=view&id=" . $result->scholar_id)?>'"  <?php echo $disableButton ?>><i class="fa fa-eye fa-fw"></i></button>
-			<?php if($activation[0]->account_approval==="pending" || empty($activation[0]->account_approval)): ?>
+			<?php if($_SESSION['TYPE']!="Staff" && $activation[0]->account_approval==="pending" || empty($activation[0]->account_approval)): ?>
 			<button type="button" title="Approved" class="btn btn-success" onclick="location.href='<?php echo base_url("SubAdmin/scholar/scholar1/doVerify?status=accept&id=$result->scholar_id&link=$link") ?>'" <?php echo $disableButton ?>><i class="fa fa-check fa-fw"></i></button>
 			<button type="button" title="Reject" class="btn btn-danger" onclick="location.href='<?php echo base_url("SubAdmin/scholar/scholar1/doVerify?status=deny&id=$result->scholar_id&link=$link") ?>'" <?php echo $disableButton ?>><i class="fa fa-times fa-fw"></i></button>
 		  </td>";
