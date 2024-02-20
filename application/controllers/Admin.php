@@ -34,8 +34,7 @@ class Admin extends CI_Controller {
         $this->load->model("Initialize/Dates");
         
         $this->announcement = new announcementSub();
-        $this->scholar = new ScholarSub();
-        $this->user = new userSub();
+$this->scholar = new ScholarSub();
     }
 
     function countNotif() {
@@ -46,6 +45,29 @@ class Admin extends CI_Controller {
         return $ct;
         
     }
+    function accountSession() {
+        // Start the session
+        // Check if the 'loginStatus' key exists in the session and if it's false, or if the session is empty
+        if (!isset($_SESSION['loginStatus']) || !$_SESSION['loginStatus'] || empty($_SESSION)) {
+            // Unset the specified session variables
+            unset($_SESSION['NAME']);
+            unset($_SESSION['UEMAIL']);
+            unset($_SESSION['PASS']);
+            unset($_SESSION['TYPE']);
+            unset($_SESSION['loginTo']);
+            unset($_SESSION['account_status']);
+    
+            // Destroy the session
+            session_destroy();
+    
+            // Redirect to the login page
+            redirect('login');
+        }
+    
+        // End the session
+        session_write_close();
+    }
+    
     function view_render($arr) {
         $role = ($arr['link']=="Staff") ? "Staff" : "Administration";
         $cr = $this->db->query("SELECT count(*) as count FROM `notification` where notification_status not in('read') AND notification_for = '$role'")
@@ -93,16 +115,21 @@ class Admin extends CI_Controller {
     }
 
     public function announcement() {
+        $this->accountSession();
         $this->announcement->announcementController($this,"Admin");
     }
+    // public function Scholar() {
+    //     $this->scholar->scholarController($this,"Admin");
+    // }
+
     public function Scholar() {
+        $this->accountSession();
         $this->scholar->scholarController($this,"Admin");
     }
-
-    public function user() {
-        $this->user->userController($this,"Admin");
-    }
+    //Hello world
     public function Dashboard() {
+        
+        $this->accountSession();
         
         $title = "";
         $content = "";

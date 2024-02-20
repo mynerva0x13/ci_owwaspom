@@ -9,11 +9,20 @@ class Login extends CI_Controller {
         $this->load->library('session');
         $this->load->model("Initialize/Session");
         
+        $this->load->helper('cookie');
         $this->load->model("Initialize/Account");
     }
     
     public function index() {
        $message = "";
+       $cookie = $this->input->cookie('message', true);
+       
+       if (!empty($cookie)) {  
+           $ck = json_decode($cookie);
+           
+           $message = $this->Session->MessageResponse($ck->message, $ck->type);
+          
+       }
         if(isset($_POST['btnLogin'])){
             $email = trim($_POST['user_email']);
             $upass  = trim($_POST['user_pass']);
@@ -24,8 +33,14 @@ class Login extends CI_Controller {
                 } else {
                     $user = $this->Account->userAuthentication($email,$upass);
                     if($user['status']) {
-                        $message = $this->Session->MessageResponse($user['message'], "success");
-                        
+                        $this->input->set_cookie(array(
+                            "name" => "message",
+                            "value" => json_encode(array(
+                                "message" => $user['message'],
+                                "type" => $user['style']
+                            )),
+                            'expire' => 1
+                        )); 
                         $_SESSION['loginStatus'] = true;
                         // $_SESSION['USERID'] = $user['ID'];
                         if ($user['type']=='Administrator'){
@@ -50,9 +65,16 @@ class Login extends CI_Controller {
                     }
                     else {
 
-                        $message = $this->Session->MessageResponse($user['message'], "error");
-                        
+                        $this->input->set_cookie(array(
+                            "name" => "message",
+                            "value" => json_encode(array(
+                                "message" => $user['message'],
+                                "type" => $user['style']
+                            )),
+                            'expire' => 1
+                        )); 
                   
+                        redirect("login");
                     }
                 }
         }
@@ -64,4 +86,19 @@ class Login extends CI_Controller {
 
     }
     
+public function logout() {
+        unset( $_SESSION['USERID'] );
+unset( $_SESSION['NAME'] );
+unset( $_SESSION['UEMAIL'] );
+unset( $_SESSION['PASS'] );
+unset( $_SESSION['TYPE'] );
+
+unset( $_SESSION['loginTo'] );
+
+unset( $_SESSION['account_status'] );
+session_destroy();
+        redirect('login');
+    }
+
+
 }

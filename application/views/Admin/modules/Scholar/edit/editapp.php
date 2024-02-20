@@ -26,7 +26,7 @@
   </style>
   
           
-  <form class="form-horizontal span6" action="<?php echo base_url("SubAdmin/scholar/scholar1/doEditApp?id=$id")?>" method="POST" >
+  <form class="form-horizontal span6" action="<?php echo base_url("SubAdmin/scholar/scholar1/doEditApp?id=$id&link=$link2")?>" method="POST" >
     
           
             <div class="row">

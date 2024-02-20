@@ -22,35 +22,36 @@ class ScholarSub {
 
         switch (!empty($_GET['view']) ? $_GET['view'] : null) {
             case 'view':
-                $content = $self->load->view("Admin/modules/scholar/view", ["response"=> $message], true);
+                $content = $self->load->view("Admin/modules/scholar/view", ["response"=> $message,"link2"=>$link], true);
                 break;
 
             case "update":
                 $content = $self->load->view("Admin/modules/scholar/edit", [
                     "con" => $_GET['id'],
                     "singlestudent" => $self->Student->single_students($_GET['id']),
+                    "link2"=>$link
                 ], true);
                 break;
 
             case "add1":
-                $content = $self->load->view("Admin/modules/scholar/add1", [], true);
+                $content = $self->load->view("Admin/modules/scholar/add1", ["link2"=>$link], true);
                 break;
 
             case "edit":
-                $content = $this->loadScholarEditView($self, 'edit');
+                $content = $this->loadScholarEditView($self, 'edit', $link);
                 break;
             case "editfam":
-                $content = $this->loadScholarEditView($self, 'editfam');
+                $content = $this->loadScholarEditView($self, 'editfam', $link);
                 break;
             case "edited":
               
-                $content = $this->loadScholarEditView($self, 'edited');
+                $content = $this->loadScholarEditView($self, 'edited', $link);
                 break;
             case "editapp":
-                $content = $this->loadScholarEditView($self, 'editapp');
+                $content = $this->loadScholarEditView($self, 'editapp', $link);
                 break;
             default:
-                $query = "SELECT * FROM `scholar_info` WHERE deleted_at IS NULL";
+                $query = "SELECT * FROM `scholar_info` info INNER JOIN user_acc acc ON info.user_id = acc.USERID WHERE info.deleted_at IS NULL AND acc.account_approval IN ('','accept','pending')";
                 $cur = $self->db->query($query)->result();
                 $content = $self->load->view("Admin/modules/scholar/list", [
                     "cur" => $cur,
@@ -67,7 +68,7 @@ class ScholarSub {
             "link"=>$link
         ));
     }
-    function loadScholarEditView($self, $viewName) {
+    function loadScholarEditView($self, $viewName, $link) {
         $scholar_id = $_GET['id'];
     
         $student = new Student();
@@ -75,7 +76,8 @@ class ScholarSub {
     
         $content = $self->load->view("Admin/modules/scholar/edit/{$viewName}", [
             "singlestudent" => $singlestudent,
-            "id" => $_GET['id']
+            "id" => $_GET['id'],
+            "link2"=>$link
         ], true);
     
         return $content;

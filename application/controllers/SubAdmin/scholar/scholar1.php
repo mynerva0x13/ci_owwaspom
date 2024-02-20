@@ -20,6 +20,8 @@ class scholar1 extends CI_Controller
         
         $this->load->model("Initialize/Parents");
         $this->load->model("Initialize/Request");
+
+        $this->link = $_GET['link'];
     }
 
     public function doDelete(){
@@ -36,7 +38,7 @@ class scholar1 extends CI_Controller
                 'expire' => 1
             ));
             
-            redirect("Staff/scholar");
+            redirect("$this->link/scholar");
             }else{
                 
                 
@@ -78,7 +80,7 @@ class scholar1 extends CI_Controller
                 'expire' => 1
             ));
             
-            redirect("Staff/scholar");
+            redirect("$this->link/scholar");
 
         }
 
@@ -104,7 +106,7 @@ class scholar1 extends CI_Controller
                     'expire' => 1
                 ));
                 
-                redirect("Staff/scholar");
+                redirect("$this->link/scholar");
             } else {
                 $program = $_POST['program'];
                 $firstname = str_replace("'", "\'", $_POST['firstname']);
@@ -150,7 +152,7 @@ class scholar1 extends CI_Controller
                         echo '<script>
                             var errorMessage = "Email already exists!";
                             alert(errorMessage);
-                            window.location.href = "index.php?view=add1";
+                            window.location.href = "'.base_url($this->link."/scholar").'";
                         </script>';
                         exit;
                     }
@@ -164,6 +166,7 @@ class scholar1 extends CI_Controller
                 $user1->staff_address = $region;
                 $user1->create();
     
+                $userAccId = $user1->getLastInsertId();
                 $user2 = new User();
                 $user2->NAME = $OFWname;
                 $user2->username = $OFW_email;
@@ -172,10 +175,7 @@ class scholar1 extends CI_Controller
                 $user2->account_status = $account_status;
                 $user2->staff_address = $region;
                 $user2->create();
-    
-                $userAccId = $user1->getLastInsertId();
 
-                echo $userAccId;
 
                 
                 if ($userAccId) {
@@ -219,7 +219,7 @@ class scholar1 extends CI_Controller
                                                     )),
                                                     'expire' => 1
                                                 ));
-                                                redirect("Staff/scholar");
+                                                redirect("$this->link/scholar");
                 }
 
                 }
@@ -308,7 +308,7 @@ class scholar1 extends CI_Controller
                     )),
                     'expire' => 1
                 ));
-                // redirect("Staff/scholar");
+                redirect("$this->link/scholar");
                 }
             }
     }
@@ -362,7 +362,7 @@ class scholar1 extends CI_Controller
                     )),
                     'expire' => 1
                 ));
-                redirect("Staff/scholar?view=view&id=$scholar_id");
+                redirect("$this->link/scholar?view=view&id=$scholar_id");
             }
         }
     }
@@ -418,10 +418,10 @@ class scholar1 extends CI_Controller
             )),
             'expire' => 1
         ));
-        redirect("Staff/scholar?view=view&id=$scholar_id");
+        redirect("$this->link/scholar?view=view&id=$scholar_id");
         }
     }
-    public function doeditCourse() {
+    public function editCourse() {
         
         if (isset($_POST['save'])) {
             
@@ -459,7 +459,7 @@ class scholar1 extends CI_Controller
                 )),
                 'expire' => 1
             ));
-            redirect("Staff/scholar?view=view&id=$scholar_id");
+            redirect("$this->link/scholar?view=view&id=$scholar_id");
         }
     }
     public function doEditApp() {
@@ -485,7 +485,7 @@ class scholar1 extends CI_Controller
                     )),
                     'expire' => 1
                 ));
-                redirect("Staff/scholar?view=view&id=$scholar_id");
+                redirect("$this->link/scholar?view=view&id=$scholar_id");
         }
     }
     public function doActivate() {
@@ -499,6 +499,27 @@ class scholar1 extends CI_Controller
 
             $sql = "UPDATE user_acc SET account_status = 'deactivate' WHERE USERID = (SELECT user_id FROM scholar_info WHERE scholar_id =".$_GET['id'].")";
             $this->db->query($sql);
+            redirect("$link/scholar");
+        }
+        else {
+            redirect("$link/scholar");
+        }
+    }
+    public function doVerify() {
+        
+        $link = $_GET["link"];
+        if(!empty($_GET["status"])) {
+            $sql = "UPDATE user_acc SET account_approval = '".$_GET['status']."' WHERE USERID = (SELECT user_id FROM scholar_info WHERE scholar_id =".$_GET['id'].")";
+            $this->db->query($sql);
+            $this->input->set_cookie(array(
+                "name" => "message",
+                "value" => json_encode(array(
+                    "message" => "Schollar status is update successfully!",
+                    "type" => "success"
+                )),
+                'expire' => 1
+            ));
+            
             redirect("$link/scholar");
         }
         else {

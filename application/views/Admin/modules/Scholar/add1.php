@@ -3,11 +3,11 @@ $url =  null;
 $val = null;
 $desc = null;
 if(!empty($_GET['view']) && $_GET['view']=="update") {
-    $url = "SubAdmin/scholar/scholar1/doEdit?id=".$con->id;
+    $url = "SubAdmin/scholar/scholar1/doEdit?id=".$con->id."&link=$link2";
     $desc = $con->desc;
 }
 else {
-    $url = "SubAdmin/scholar/scholar1/doInsert";
+    $url = "SubAdmin/scholar/scholar1/doInsert?link=$link2";
 }
 ?>
 <style>

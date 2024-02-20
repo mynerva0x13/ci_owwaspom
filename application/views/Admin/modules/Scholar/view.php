@@ -68,7 +68,7 @@ $result = $student->single_students($IDNO);
                             
                                     $sql = "UPDATE `notification` set `notification_status`='read'   WHERE `notification_id` = $id";
                                     $this->db->query($sql);
-                                    $link = base_url("Staff/announcement?view=view&id=" . $announcement_id);
+                                    $link = base_url("$link2/announcement?view=view&id=" . $announcement_id);
                                 } elseif ($type == "reply") {    
 
                                     $reply = new Replies ();
@@ -87,11 +87,11 @@ $result = $student->single_students($IDNO);
                                     $sql = "UPDATE `notification` set `notification_status`='read'   WHERE `notification_id` = $id";
                                     $this->db->query($sql);
                                     
-                                    $link = base_url("Staff/announcement?view=view&id=" . $announcement_id);
+                                    $link = base_url("$link2/announcement?view=view&id=" . $announcement_id);
                                 } elseif ($type == "request") {    
                                     $sql = "UPDATE `notification` set `notification_status`='read'   WHERE `notification_id` = $id";
                                     $this->db->query($sql);  
-                                    $link = base_url("Staff/modstudent/index.php?view=view&id=" . $scholar_id);
+                                    $link = base_url("$link2/modstudent/index.php?view=view&id=" . $scholar_id);
                                 } else {
                                     $link = base_url("admin/index.php");
                                 }
@@ -167,7 +167,7 @@ $result = $student->single_students($IDNO);
 
 						<div class="card-body bg-transparent border-0">
 							<div class="text-right">
-								<a href="<?php echo base_url("Staff/scholar?view=edit&id=$result->scholar_id")?>">
+								<a href="<?php echo base_url("$link2/scholar?view=edit&id=$result->scholar_id")?>">
 									<button type="button" class="btn btn-success btn-floating">
 										<i class="fa fa-pencil-square-o"></i>
 									</button>
@@ -329,7 +329,7 @@ $result = $student->single_students($IDNO);
 				<!--<div class="card shadow-sm">-->
 					<div class="card-body bg-transparent border-0">
 						<div class="text-right">
-							<a href="<?php echo base_url("Staff/scholar?view=editfam&id=$result->scholar_id") ?>">
+							<a href="<?php echo base_url("$link2/scholar?view=editfam&id=$result->scholar_id") ?>">
 								<button type="button" class="btn btn-success btn-floating">
 									<i class="fa fa-pencil-square-o"></i>
 								</button>
@@ -414,7 +414,7 @@ $result = $student->single_students($IDNO);
 
 					<div class="card-body bg-transparent border-0">
 						<div class="text-right">
-							<a href="<?php echo base_url("$link/scholar?view=edited&id=$result->scholar_id")?>">
+							<a href="<?php echo base_url("$link2/scholar?view=edited&id=$result->scholar_id")?>">
 								<button type="button" class="btn btn-success btn-floating">
 									<i class="fa fa-pencil-square-o"></i>
 								</button>
@@ -475,7 +475,7 @@ $result = $student->single_students($IDNO);
 
 					<div class="card-body bg-transparent border-0">
 						<div class="text-right">
-							<a href="<?php echo base_url("$link/scholar?view=editapp&id=$result->scholar_id") ?>">
+							<a href="<?php echo base_url("$link2/scholar?view=editapp&id=$result->scholar_id") ?>">
 								<button type="button" class="btn btn-success btn-floating">
 									<i class="fa fa-pencil-square-o"></i>
 								</button></a>
