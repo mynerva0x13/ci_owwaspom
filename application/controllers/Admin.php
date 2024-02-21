@@ -69,6 +69,8 @@ $this->scholar = new ScholarSub();
     }
     
     function view_render($arr) {
+        
+        $this->accountSession();
         $role = ($arr['link']=="Staff") ? "Staff" : "Administration";
         $cr = $this->db->query("SELECT count(*) as count FROM `notification` where notification_status not in('read') AND notification_for = '$role'")
         ->result();
@@ -93,7 +95,8 @@ $this->scholar = new ScholarSub();
     }
     function dash() {
 
-        $total_scolar = $this->db->query("SELECT COUNT(*) as total FROM scholar_info WHERE `graduate` != 'yes'")->result();
+        $this->accountSession();
+        $total_scolar = $this->db->query("SELECT COUNT(*) as total FROM scholar_info WHERE `graduate` = 'no' OR `graduate` IS NULL")->result();
         $odsp = $this->db->query("SELECT COUNT(*) as total FROM scholar_info where program LIKE 'ODSP' AND `graduate` != 'yes'")->result();
         $odsp_plus = $this->db->query("SELECT COUNT(*) as total FROM scholar_info where program LIKE 'ODSP+' AND `graduate` != 'yes'")->result();
         $edpse = $this->db->query("SELECT COUNT(*) as total FROM scholar_info where program LIKE 'EDSP' AND `graduate` != 'yes'")->result();

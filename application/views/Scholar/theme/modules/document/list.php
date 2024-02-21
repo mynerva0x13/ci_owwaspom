@@ -84,7 +84,7 @@
 										continue; // Skip this iteration of the loop
 									}
 
-								if ($result->report_sender == $user){
+								// if ($result->report_sender == $user){
 						
 									
 									echo '<tr>';
@@ -99,9 +99,9 @@
 									echo '<div class="dots-icon">&#8942;</div>';
 									// Popup menu for edit, delete, view, and download
 									echo '<div class="dropdown-content">';
-									echo '<a href="#" onclick="editDocument(' . $result->document_id . ')">Edit</a>';
-									echo '<a href="#" onclick="viewDocument(' . $result->document_id . ')">View</a>';
-									echo '<a href="#" onclick="deleteDocument(' . $result->document_id . ')">Delete</a>';
+									echo '<a href="'.base_url("Scholar/documents?view=edit&id=$result->document_id").'">Edit</a>';
+									echo '<a href="'.base_url("Scholar/documents?view=view&id=$result->document_id").'">View</a>';
+									echo '<a onclick="deleteDocument(' . $result->document_id . ')">Delete</a>';
 									echo '<a href="#" onclick="downloadDocument(' . $result->document_id . ')">Download</a>';
 									echo '</div>';
 									echo '</div>';
@@ -109,10 +109,39 @@
 									echo '</tr>';
 									
 
-							} 
+							// } 
 						}
 							?>
 						</tbody>
 							
 						</table> 
 						</form> 
+
+						<script>function deleteDocument(ids) {
+							let con = confirm("Do you want to delete this table?");
+
+							if(con) {
+								// Basic Fetch Example
+								fetch('<?php echo base_url('SubScholar/documents/documentsScholar/doDelete') ?>',{
+									method: "POST",
+									headers: {
+    'Content-Type': 'application/json'
+  },                                                                                                                                                                                                                                                                                                                                          
+									body: JSON.stringify({
+										id: ids
+									})
+								})
+  								.then(response => {
+									alert("Delete table successfully");
+  })
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    // Handle any errors that occurred during the fetch
+    console.error('Fetch error:', error);
+  });
+
+							}
+						}
+							</script>

@@ -1,9 +1,4 @@
-<?php
-			if(!isset($_SESSION['USERID'])){
-			redirect(web_root."scholar/index.php");
-		}
 
-		?>
 	
 			<?php echo $response ?>
 					
@@ -50,7 +45,7 @@
           if ($res->comment_status == 'hidden') {
             continue; // Skip this iteration of the loop
           }
-          if ($res->announcement_id == $result->id_announcement) {
+          if ($res->announcement_id === $result->id_announcement) {
             $reply = $_SESSION['USERID'];
             $person = $_SESSION['NAME'];
             if ($res->who_commented == $reply) {

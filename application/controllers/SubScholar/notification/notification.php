@@ -1,7 +1,7 @@
 <?php
 
 class notifSub {
-    public function notificationsController($self) {
+    public function notificationsController($self,$link="") {
         $content = "";
         $title = "";
         $message = null;
@@ -34,15 +34,21 @@ class notifSub {
             
         }
 
-    $self->load->view('resource', array(
-            'body' =>  $self->load->view("Scholar/theme/template", array(
+    // $self->load->view('resource', array(
+    //         'body' =>  $self->load->view("Scholar/theme/template", array(
                 
-                "name"=>$_SESSION['NAME'],
-                "content" =>  $content,
-                "cur" => $self->countNotif($_SESSION['USERID']),
-                "title" => "Announcement"
-            ), true),
-            "title" => $title
-        ));
+    //             "name"=>$_SESSION['NAME'],
+    //             "content" =>  $content,
+    //             "cur" => $self->countNotif($_SESSION['USERID']),
+    //             "title" => "Announcement"
+    //         ), true),
+    //         "title" => $title
+    //     ));
+    $self->view_render(array(
+        "content"=>$content,
+        "title"=>"Notification",
+        "link"=>$link,
+        "script"=>$script
+    ));
     }
 }

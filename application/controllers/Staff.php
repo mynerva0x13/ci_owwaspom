@@ -61,6 +61,7 @@ class Staff extends CI_Controller {
     }
 
     function view_render($arr) {
+        $this->accountSession();
         $cr = $this->db->query("
             SELECT COUNT(*) AS count
             FROM `notification`
@@ -88,15 +89,14 @@ class Staff extends CI_Controller {
 
     function dash() {
 
-        $total_scolar = $this->db->query("SELECT COUNT(*) as total FROM scholar_info WHERE `graduate` != 'yes'")->result();
-        $odsp = $this->db->query("SELECT COUNT(*) as total FROM scholar_info where program LIKE 'ODSP' AND `graduate` != 'yes'")->result();
-        $odsp_plus = $this->db->query("SELECT COUNT(*) as total FROM scholar_info where program LIKE 'ODSP+' AND `graduate` != 'yes'")->result();
-        $edpse = $this->db->query("SELECT COUNT(*) as total FROM scholar_info where program LIKE 'EDSP' AND `graduate` != 'yes'")->result();
-        $edpse_plus = $this->db->query("SELECT COUNT(*) as total FROM scholar_info where program LIKE 'EDSP+' AND `graduate` != 'yes'")->result();
-        $ELAP = $this->db->query("SELECT COUNT(*) as total FROM scholar_info where program LIKE 'ELAP%' AND `graduate` != 'yes'")->result();
-
-      
-
+   
+        $total_scolar = $this->db->query("SELECT COUNT(*) as total FROM scholar_info WHERE `graduate` = 'no' OR `graduate` IS NULL")->result();
+        $odsp = $this->db->query("SELECT COUNT(*) as total FROM scholar_info INNER JOIN user_acc ON USERID = user_id WHERE account_approval = 'accept' AND program LIKE 'ODSP' AND (`graduate` != 'yes' OR `graduate` IS NULL)")->result();
+        $odsp_plus = $this->db->query("SELECT COUNT(*) as total FROM scholar_info INNER JOIN user_acc ON USERID = user_id WHERE account_approval = 'accept' AND program LIKE 'ODSP+' AND (`graduate` != 'yes' OR `graduate` IS NULL)")->result();
+        $edpse = $this->db->query("SELECT COUNT(*) as total FROM scholar_info INNER JOIN user_acc ON USERID = user_id WHERE account_approval = 'accept' AND program LIKE 'EDSP' AND (`graduate` != 'yes' OR `graduate` IS NULL)")->result();
+        $edpse_plus = $this->db->query("SELECT COUNT(*) as total FROM scholar_info INNER JOIN user_acc ON USERID = user_id WHERE account_approval = 'accept' AND program LIKE 'EDSP+' AND (`graduate` != 'yes' OR `graduate` IS NULL)")->result();
+        $ELAP = $this->db->query("SELECT COUNT(*) as total FROM scholar_info INNER JOIN user_acc ON USERID = user_id WHERE account_approval = 'accept' AND program LIKE 'ELAP' AND (`graduate` != 'yes' OR `graduate` IS NULL)")->result();
+        
 
         return array(
             "total_scolar"=>$total_scolar[0]->total,
@@ -110,11 +110,14 @@ class Staff extends CI_Controller {
     }
 
     public function index() {
+
+        $this->accountSession();
         $this->Dashboard();
     }
 
     public function Dashboard() {
         
+        $this->accountSession();
         $title = "Dashboard";
         $content = "";
 

@@ -1,7 +1,7 @@
 <?php
 
 class DocumentsSub {
-    public function documentsController($self) {
+    public function documentsController($self,$link) {
         $content = "";
         $title = "";
         $message = null;
@@ -12,14 +12,16 @@ class DocumentsSub {
             $ck = json_decode($cookie);
             $message = $self->Session->MessageResponse($ck->message, $ck->type);
         }
+
         $user = $_SESSION['USERID'];
 
-        echo $user;
 
         $student = new Student();
         $singleStudent = $student->single_students($user);
-
-        switch (!empty($_GET['view']) ? $_GET['view'] : null) {
+        if(!empty($_GET['id'])) {
+            $id = $_GET['id'];
+        }
+        switch (!empty($_GET['view']) ? $_GET['view'] : null ) {
             case "add":
                 
              
@@ -38,8 +40,28 @@ class DocumentsSub {
                     true
                 );
             break;
+            case "edit":
+                $mydb = $self->db->query("SELECT * 
+                FROM  `upload_documents` where document_id = $id")->result();
+                
+                $mydb2 = $self->db->query("SELECT * 
+                FROM  `scholar_info` where user_id = $user");
+                $cur2 = $mydb2->result();
+
+                $content = $self->load->view(
+                    'Scholar/theme/modules/document/add',
+                    array(
+                        "cur" => $mydb,   
+                        "cur2"=>$cur2,
+                        "acc" => $singleStudent,
+                        "user" => $user
+                  
+                    ),
+                    true
+                );
+                break;
             default:
-                $mydb = $self->db->query("SELECT * FROM `upload_documents`");
+                $mydb = $self->db->query("SELECT * FROM `upload_documents` WHERE report_sender = (SELECT scholar_id FROM scholar_info WHERE user_id = $user) AND deleted_at is null");
                 $cur = $mydb->result();
 
 
@@ -55,22 +77,11 @@ class DocumentsSub {
                 break;
         }
 
-        $self->load->view(
-            'resource',
-            array(
-                'body' =>  $self->load->view(
-                    "Scholar/theme/template",
-                    array(
-                        
-                        "name"=>$_SESSION['NAME'],
-                        "content" =>  $content,
-                        "cur" => $self->countNotif($_SESSION['USERID']),
-                        "title" => "Announcement"
-                    ),
-                    true
-                ),
-                "title" => $title
-            )
-        );
+        $self->view_render(array(
+            "content"=>$content,
+            "title"=>"Scholars",
+            "link"=>$link
+        ));
+
     }
 }

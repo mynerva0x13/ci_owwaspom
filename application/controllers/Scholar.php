@@ -128,13 +128,37 @@ class Scholar extends CI_Controller {
     }
 
     public function documents() {
-        $this->documents->documentsController($this);
+        $this->documents->documentsController($this,"Scholar");
     }
 
     public function notifications() {
         $this->notifications->notificationsController($this);
     }
+    function view_render($arr) {
+        $cr = $this->db->query("
+            SELECT COUNT(*) AS count
+            FROM `notification`
+            WHERE notification_status NOT IN ('read') AND notification_for = 'Staff'
+        ")->result();
 
+           $this->load->view(
+            'resource',
+            array(
+                'body' =>  $this->load->view(
+                    "Scholar/theme/template",
+                    array(
+                        
+                        "name"=>$_SESSION['NAME'],
+                        "content" =>  $arr['content'],
+                        "cur" => $this->countNotif($_SESSION['USERID']),
+                        "title" => "Announcement"
+                    ),
+                    true
+                ),
+                "title" => $arr['title']
+            )
+        );
+    }
     public function logout() {
         unset( $_SESSION['USERID'] );
 unset( $_SESSION['NAME'] );

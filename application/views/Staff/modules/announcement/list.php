@@ -87,7 +87,7 @@
 
 					// $mydb->setQuery("SELECT * 
 					// 			FROM  `tblusers` WHERE TYPE != 'Customer'");
-					foreach ($cure as $result) {
+					foreach ($output as $result) {
 						if ($result->announcement_stat == 'hidden') {
 							continue; // Skip this iteration of the loop
 						}
