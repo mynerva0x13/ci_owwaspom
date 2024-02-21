@@ -32,7 +32,7 @@ class DocumentsSub {
                 $content = $self->load->view(
                     'Scholar/theme/modules/document/add',
                     array(
-                        "cur" => $cur,   
+                        "cur2" => $cur, 
                         "acc" => $singleStudent,
                         "user" => $user
                   
