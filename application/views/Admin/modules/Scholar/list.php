@@ -11,7 +11,7 @@ $url = "SubAdmin/scholar/scholar1/doDelete";
 			</div>
 				
 <form class="row g-3" action="<?php echo base_url($url)?>" method="POST">
-	<table id="example"  class="table table-striped table-bordered table-hover" cellspacing="0" style="font-size:12px" >
+	<table id="example"  class="table table-hover" cellspacing="0" style="font-size:12px" >
 						
 					<thead>
 						<tr> 

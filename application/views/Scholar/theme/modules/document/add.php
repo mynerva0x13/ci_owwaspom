@@ -107,15 +107,12 @@ else {
 
     if (file) {
       fileLabel.textContent = file.name;
-      
+
     console.log(file.name)
     } else {
       fileLabel.textContent = 'No file chosen';
-      
+
     console.log(0)
     }
   }
 </script>
-
-</body>
-</html>

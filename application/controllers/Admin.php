@@ -121,6 +121,9 @@ $this->scholar = new ScholarSub();
         $this->accountSession();
         $this->announcement->announcementController($this,"Admin");
     }
+    // public function Scholar() {
+    //     $this->scholar->scholarController($this,"Admin");
+    // }
 
     public function Scholar() {
         $this->accountSession();
