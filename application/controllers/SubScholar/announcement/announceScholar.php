@@ -19,6 +19,9 @@ class AnnounceScholar extends CI_Controller
 
     public function doReply()
     {
+        
+        $link = (!empty($_GET['link'])) ? $_GET['link'] : 'Scholar';
+
         global $mydb;
         $comment_id = $_POST['comment_id'];
         $reply_text = $_POST['reply_text'];
@@ -36,7 +39,7 @@ class AnnounceScholar extends CI_Controller
                 )),
                 'expire' => 1
             ));
-            redirect("Scholar/announcement");
+            redirect($_SESSION['link']."/announcement");
         } else {
             $reply = new Replies();
             $reply->commentid = $comment_id;
@@ -62,7 +65,7 @@ class AnnounceScholar extends CI_Controller
                     'expire' => 1
                 ));
 
-                redirect("Scholar/announcement");
+                redirect($_SESSION['link']."/announcement");
             } else {
                 $this->input->set_cookie(array(
                     "name" => "message",
@@ -72,7 +75,7 @@ class AnnounceScholar extends CI_Controller
                     )),
                     'expire' => 1
                 ));
-                redirect("Scholar/announcement");
+                redirect($_SESSION['link']."/announcement");
             }
         }
     }
@@ -99,7 +102,7 @@ class AnnounceScholar extends CI_Controller
                 )),
                 'expire' => 1
             ));
-            redirect("$link/announcement");
+            redirect($_SESSION['link']."/announcement");
         } else {
             $comment = new Comments();
             $comment->announcement_id = $id_announcement;
@@ -124,7 +127,7 @@ class AnnounceScholar extends CI_Controller
                     )),
                     'expire' => 1
                 ));
-                redirect("$link/announcement");
+                redirect($_SESSION['link']."/announcement");
             } else {
                 $this->input->set_cookie(array(
                     "name" => "message",
@@ -134,7 +137,7 @@ class AnnounceScholar extends CI_Controller
                     )),
                     'expire' => 1
                 ));
-                redirect("$link/announcement");
+                redirect($_SESSION['link']."/announcement");
             }
         }
     }

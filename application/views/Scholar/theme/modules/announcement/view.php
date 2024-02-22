@@ -7,9 +7,22 @@
                     // $mydb->setQuery("SELECT * 
                             // 			FROM  `tblusers` WHERE TYPE != 'Customer'");
                     
-                            // print_r($output);
+                            print_r($output);
+                            
+              
                     foreach ($output as $result) {
-            
+                      if(!empty($_GET['id']) && $result->announcement_stat == 'hidden') {
+                        $this->input->set_cookie(array(
+                          "name" => "message",
+                          "value" => json_encode(array(
+                              "message" => "The announcement is deleted!",
+                              "type" => "danger"
+                          )),
+                          'expire' => 1
+                      ));
+                        redirect($_SESSION['link']."/notification"); 
+                        exit;
+                      }
                         if ($result->announcement_stat == 'hidden') {
                             continue; // Skip this iteration of the loop
                         }

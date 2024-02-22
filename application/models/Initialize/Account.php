@@ -28,7 +28,7 @@ class Account extends CI_Model {
                     $_SESSION['username'] = $user_found->username;
                     $_SESSION['account_password'] = $user_found->account_password;
                     $_SESSION['TYPE'] = $user_found->TYPE;
-
+                    
                     if($scholarAccess->num_rows() > 0 ) {
                         return array(
                             "message"=> "This account is found",

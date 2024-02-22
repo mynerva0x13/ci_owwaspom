@@ -14,7 +14,7 @@ class AnnouncementSub
                 $content = $self->load->view(
                     'Scholar/theme/modules/announcement/add',
                     array(
-                        "res" => $res
+                        "res" => $res,
                     ),
                     true
                 );

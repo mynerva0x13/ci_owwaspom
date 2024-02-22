@@ -1,4 +1,15 @@
 
+
+<?php
+
+if(!empty($_GET['link'])) {
+  $url='SubScholar/profile/acceptEdit/doEditscholarapp'.((!empty($_GET['link'])) ? "?link=".$_GET['link']."&id=$singlestudent->request_info_id" : "");
+}
+else {
+  $url='SubScholar/profile/editUser/doEditscholarapp';
+}
+?>
+
 <style type="text/css">
   .sidebar-left .main {
     float: right;
@@ -29,7 +40,7 @@
 </style>
 doEditscholarapp
 
-<form class="form-horizontal span6" action="<?php echo base_url('SubScholar/profile/editUser/doEditscholarapp') ?>" method="POST">
+<form class="form-horizontal span6" action="<?php echo base_url($url) ?>" method="POST">
   
   <div class="row">
     <div class="col-lg-12">

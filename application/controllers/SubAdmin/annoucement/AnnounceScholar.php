@@ -161,7 +161,7 @@ class AnnounceScholar extends CI_Controller
                     )),
                     'expire' => 1
                 ));
-                redirect("Staff/Announcement");
+                redirect($_SESSION['link']."/Announcement");
 
 		}else{	
 		

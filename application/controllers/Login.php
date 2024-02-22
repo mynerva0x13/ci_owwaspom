@@ -44,20 +44,27 @@ class Login extends CI_Controller {
                         $_SESSION['loginStatus'] = true;
                         // $_SESSION['USERID'] = $user['ID'];
                         if ($user['type']=='Administrator'){
-                            redirect("Admin/Dashboard");
                             $_SESSION['loginTo'] = "admin";
+                            $_SESSION['link'] = "admin";
+                            
+                            redirect("Admin/Dashboard");
     
                         } else if ($user['type'] == 'Staff') {
-                            redirect("Staff");
                             $_SESSION['loginTo'] = "staff";
+                            $_SESSION['link'] = "Staff";
+                            
+                            redirect("Staff");
     
                         } else if ($user['type'] == 'Scholar') {
-                            redirect("Scholar");
-                            $_SESSION['loginTo'] = "scholar";
+
+                            $_SESSION['link'] = "scholar";         
+                            
+                            redirect("Scholar");                   
     
                         } else if ($user['type'] == 'Parent') {
-                            redirect("Parent");
                             $_SESSION['loginTo'] = "parent";
+                            
+                            redirect("Parent");
     
                         }else{
                             redirect("login");
@@ -93,6 +100,7 @@ unset( $_SESSION['UEMAIL'] );
 unset( $_SESSION['PASS'] );
 unset( $_SESSION['TYPE'] );
 
+unset( $_SESSION['link'] );
 unset( $_SESSION['loginTo'] );
 
 unset( $_SESSION['account_status'] );

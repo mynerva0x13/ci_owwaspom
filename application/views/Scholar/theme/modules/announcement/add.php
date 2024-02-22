@@ -61,7 +61,7 @@
   
 <?php echo $res->announcement_desc; ?>
 	<h3>Announcement</h3>
-	<form class="form-horizontal span6" action="../SubScholar/announcement/announceScholar/doComment<?php echo (!empty($redirect)) ? "?link=$redirect" : '' ?>" method="POST">
+	<form class="form-horizontal span6" action="../SubScholar/announcement/announceScholar/doComment<?php echo (!empty($link)) ? "?link=$link" : '' ?>" method="POST">
 		<div class='card-body'>
 		</div>
 

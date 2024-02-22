@@ -158,7 +158,7 @@ class documentsScholar extends CI_Controller
 							'expire' => 1
 						));
 						
-						// redirect("Scholar/documents");
+						redirect("Scholar/documents");
 			}
 	}
     public function doInsert()

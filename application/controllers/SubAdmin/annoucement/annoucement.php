@@ -38,13 +38,9 @@ class announcementSub {
                 break;
             case "update":
             case "add":
-                // if()
-                
-
                 $content = $self->load->view("admin/modules/announcement/add",
                 array(
                     "con"=>$getJSON,
-                    
                     "link"=>$link
                 ),true);
 

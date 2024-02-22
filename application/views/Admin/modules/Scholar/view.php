@@ -257,7 +257,7 @@ $ids = (!empty($_GET['id'])) ? "AND notif_creator=".$_GET['id'] : null;
 <tbody>
 								<tr>
 <?php 
-$sql = $this->db->query("SELECT * FROM upload_documents WHERE report_sender=$result->scholar_id")->result();
+$sql = $this->db->query("SELECT * FROM upload_documents WHERE report_sender=$result->scholar_id and deleted_at is null")->result();
 
 if(!empty($sql)) {
 	foreach($sql as $item) {

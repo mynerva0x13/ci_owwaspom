@@ -101,8 +101,8 @@
 									echo '<div class="dropdown-content">';
 									echo '<a href="'.base_url("Scholar/documents?view=edit&id=$result->document_id").'">Edit</a>';
 									echo '<a href="'.base_url("Scholar/documents?view=view&id=$result->document_id").'">View</a>';
-									echo '<a href="'.base_url("SubScholar/documents/documentsScholar/doDelete?id=$result->document_id").'">DELETE</a>';
-									echo '<a href="'.base_url("SubScholar/documents/documentsScholar/downloadfile?id=$result->document_id").'">DELETE</a>';
+									echo '<a href="'.base_url("SubScholar/documents/documentsScholar/doDelete?id=$result->document_id").'">Delete</a>';
+									echo '<a href="'.base_url("SubScholar/documents/documentsScholar/downloadfile?id=$result->document_id").'">Update</a>';
 									echo '</div>';
 									echo '</div>';
 									echo '</td>';

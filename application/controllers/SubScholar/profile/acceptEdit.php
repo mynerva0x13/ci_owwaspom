@@ -62,7 +62,7 @@ class acceptEdit extends CI_Controller
                 )),
                 'expire' => 3
             ));
-            redirect("{$_GET['link']}/RequestUpdate");
+            // redirect("{$_GET['link']}/RequestUpdate");
             } else {
             $this->input->set_cookie(array(
                 "name" => "message",
@@ -71,7 +71,8 @@ class acceptEdit extends CI_Controller
                     "type" => "error"
                 )),
                 'expire' => 3
-            ));   redirect("{$_GET['link']}/RequestUpdate");
+            ));   
+            // redirect("{$_GET['link']}/RequestUpdate");
 
             }
     }
@@ -120,8 +121,8 @@ class acceptEdit extends CI_Controller
         $request->mother_status = $mother_status;
         $request->mother_Educ = $mother_Educ;
         $request->mother_contactnum = $mother_contactnum;
-        $request->request_status = "pending";
-        $request->request_description = "2";
+        // $request->request_status = "accept";
+        // $request->request_description = "2";
         $request->update($scholar_id);
 
         if ($scholar_id) {
@@ -181,7 +182,7 @@ $this->db->query($sql3);
         $request->tertiary_year_to = $tertiary_year_to;
         $request->tertiary_year_from = $tertiary_year_from;
         $request->request_status = "pending";
-        $request->request_description = "3";
+        // $request->request_description = "3";
         $request->update($scholar_id);
 
 
@@ -240,7 +241,7 @@ $this->db->query($sql3);
                 )),
                 'expire' => 3
             ));
-            redirect("Scholar/studentProfile");
+            redirect("{$_GET['link']}/RequestUpdate");
         }
     }
     public function dodeny() {

@@ -19,7 +19,7 @@
 		<div id="accordion_<?php echo $result->id_announcement ?>">
         <h3>Announcement &nbsp;<label><?php echo $this->Dates->toDateFormat($result->date_posted) ?></label></h3>
         <div class="form-group"><?php echo $result->announcement_desc ?></div> 
-		<form class="form-horizontal span6" action="../SubScholar/announcement/announceScholar/doComment" method="POST">
+		<form class="form-horizontal span6" action="../SubScholar/announcement/announceScholar/doComment?link=<?php echo (!empty($link)) ? $link : null ?>" method="POST">
         <div class="comment-box">
             <div class="form-group">
                 <label class="bmd-label-floating">Write a comment...:</label>

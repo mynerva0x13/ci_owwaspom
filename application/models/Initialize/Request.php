@@ -99,7 +99,7 @@ class Request extends CI_Model {
 
     public function update($id = 0) {
         $attributes = $this->attributes();
-        // print_r($attributes);
+        print_r($id);
         $this->db->where('scholar_id', $id);
         $this->db->update("scholar_info", $attributes);
         return $this->db->affected_rows() > 0;

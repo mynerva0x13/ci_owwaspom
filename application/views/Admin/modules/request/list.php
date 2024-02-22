@@ -49,7 +49,7 @@ if ($result->request_description == "1") {
 	echo "<td>Educational Information</td>";
 } 
 elseif ($result->request_description == "4") {
-    $view = "edit";
+    $view = "editapp";
 	
 	echo "<td>Scholar Application Information</td>";
 } 

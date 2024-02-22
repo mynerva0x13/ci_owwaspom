@@ -62,13 +62,13 @@ class profileStaff
                 );
                 break;
             case 'editapp':
-                $student = new Student();
-                $singleStudent = $student->single_students($_GET['id']);
-
+                $id = $_GET['id'];
+                $mydb = $self->db->query("SELECT * FROM  `request_info` where request_info_id = $id ");
+                $cur = $mydb->result();
                 $content = $self->load->view(
                     'Scholar/theme/modules/profile/edit4',
                     array(
-                        "singlestudent" => $singleStudent,
+                        "singlestudent" => $cur[0],
                         "response" => $message,
                     ),
                     true

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2024 at 01:31 PM
+-- Generation Time: Feb 22, 2024 at 04:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -40,7 +40,8 @@ CREATE TABLE `announcement` (
 --
 
 INSERT INTO `announcement` (`id_announcement`, `announcement_desc`, `date_posted`, `announcement_stat`, `author`) VALUES
-(1, '<p><img src=\"http://localhost/ci_owwaspom/assets/images/uploads/image_65d3fcd9f06c0_1708391641.png\" style=\"width: 50%;\">Hello, World</p><p><br></p><p><br></p>', '2024-02-19 18:14:13', 'Approved', 'Vince M. Aquilizan');
+(1, '<p><img src=\"http://localhost/ci_owwaspom/assets/images/uploads/image_65d3fcd9f06c0_1708391641.png\" style=\"width: 50%;\">Hello, Wor</p><p><br></p><p><br></p>', '2024-02-19 18:14:13', 'hidden', 'Vince M. Aquilizan'),
+(2, '<p>Hess</p>', '2024-02-21 19:06:33', 'hidden', 'Aquilizan Kouta M');
 
 -- --------------------------------------------------------
 
@@ -85,7 +86,21 @@ INSERT INTO `comments` (`comment_id`, `announcement_id`, `comment_text`, `commen
 (56, 131, 'Hello', '2024-02-02 20:06:45', '312317', 'unread'),
 (57, 131, 'hi', '2024-02-02 20:22:41', '312317', 'unread'),
 (58, 1, 'hello', '2024-02-19 18:14:40', '8', 'unread'),
-(59, 1, 'Hello World', '2024-02-21 02:28:48', '8', 'unread');
+(59, 1, 'Hello World', '2024-02-21 02:28:48', '8', 'unread'),
+(60, 1, 'Hello', '2024-02-21 19:06:57', '8', 'unread'),
+(61, 1, 'Hello', '2024-02-21 19:07:23', '8', 'unread'),
+(62, 2, 'Hello 123', '2024-02-21 19:07:34', '8', 'unread'),
+(63, 2, 'Hekki', '2024-02-21 19:08:00', '8', 'unread'),
+(64, 2, 'Hello', '2024-02-21 19:12:11', '9', 'unread'),
+(65, 2, 'sa', '2024-02-22 06:26:20', '9', 'unread'),
+(66, 2, 'mo', '2024-02-22 06:26:34', '9', 'unread'),
+(67, 2, 'mama', '2024-02-22 07:35:01', '9', 'unread'),
+(68, 2, 'mama', '2024-02-22 07:36:06', '9', 'unread'),
+(69, 2, 'mama', '2024-02-22 07:37:05', '9', 'unread'),
+(70, 2, 'mama', '2024-02-22 07:37:29', '9', 'unread'),
+(71, 1, 'mama', '2024-02-22 07:38:02', '9', 'unread'),
+(72, 2, 's', '2024-02-22 07:38:49', '9', 'unread'),
+(73, 2, 's', '2024-02-22 07:39:10', '9', 'unread');
 
 -- --------------------------------------------------------
 
@@ -146,7 +161,56 @@ INSERT INTO `notification` (`notification_id`, `catch_id`, `notification_type`, 
 (24, 1, 'announcement', 'The Admin posted a new announcement. You can check and comment now.', 'unread', '2024-02-19 18:14:13', '', 'Vince M. Aquilizan'),
 (25, 58, 'comment', 'Aquilizan Kouta M commented on your announcement. You can check and comment now.', 'unread', '2024-02-19 18:14:40', 'Administrator', 'Aquilizan Kouta M'),
 (26, 59, 'comment', 'Aquilizan Kouta M commented on your announcement. You can check and comment now.', 'unread', '2024-02-21 02:28:48', 'Administrator', 'Aquilizan Kouta M'),
-(27, 24, 'reply', ' Vince M. Aquilizan replied to your announcement. You can check and comment now.', 'unread', '2024-02-21 05:27:41', 'Administrator', 'Vince M. Aquilizan');
+(27, 24, 'reply', ' Vince M. Aquilizan replied to your announcement. You can check and comment now.', 'unread', '2024-02-21 05:27:41', 'Administrator', 'Vince M. Aquilizan'),
+(28, 64, 'request', 'Aquilizan Kouta M has an edit request. Check and validate it now.', 'unread', '2024-02-21 07:14:55', 'Administrator', '49'),
+(29, 64, 'request', 'Adminstrator has an edit your request. Check it.', 'unread', '2024-02-21 07:16:13', '49', 'Administrator'),
+(30, 65, 'request', 'Aquilizan Kouta M has an edit request. Check and validate it now.', 'unread', '2024-02-21 09:15:54', 'Administrator', '49'),
+(31, 65, 'request', 'Adminstrator has an edit your request. Check it.', 'unread', '2024-02-21 09:17:30', '49', 'Administrator'),
+(32, 66, 'request', 'Aquilizan Kouta M has an edit request. Check and validate it now.', 'unread', '2024-02-21 09:26:40', 'Administrator', '49'),
+(33, 66, 'request', 'Adminstrator has an edit your request. Check it.', 'unread', '2024-02-21 09:32:19', '49', 'Administrator'),
+(34, 67, 'request', 'Aquilizan Kouta M has an edit request. Check and validate it now.', 'unread', '2024-02-21 09:32:55', 'Administrator', '49'),
+(35, 68, 'request', 'Aquilizan Kouta M has an edit request. Check and validate it now.', 'unread', '2024-02-21 09:36:37', 'Administrator', '49'),
+(36, 68, 'request', 'Adminstrator has an edit your request. Check it.', 'unread', '2024-02-21 09:37:06', '49', 'Administrator'),
+(37, 69, 'request', 'Aquilizan Kouta M has an edit request. Check and validate it now.', 'unread', '2024-02-21 09:39:52', 'Administrator', '49'),
+(38, 69, 'request', 'Adminstrator has an edit your request. Check it.', 'unread', '2024-02-21 09:40:57', '49', 'Administrator'),
+(39, 2, 'announcement', 'The Admin posted a new announcement. You can check and comment now.', 'unread', '2024-02-21 19:06:33', '', 'Aquilizan Kouta M'),
+(40, 60, 'comment', 'Aquilizan Kouta M commented on your announcement. You can check and comment now.', 'unread', '2024-02-21 19:06:57', 'Administrator', 'Aquilizan Kouta M'),
+(41, 61, 'comment', 'Aquilizan Kouta M commented on your announcement. You can check and comment now.', 'unread', '2024-02-21 19:07:23', 'Administrator', 'Aquilizan Kouta M'),
+(42, 62, 'comment', 'Aquilizan Kouta M commented on your announcement. You can check and comment now.', 'unread', '2024-02-21 19:07:34', 'Administrator', 'Aquilizan Kouta M'),
+(43, 63, 'comment', 'Aquilizan Kouta M commented on your announcement. You can check and comment now.', 'unread', '2024-02-21 19:08:00', 'Administrator', 'Aquilizan Kouta M'),
+(44, 64, 'comment', 'Vince M. Aquilizan commented on your announcement. You can check and comment now.', 'unread', '2024-02-21 19:12:11', 'Administrator', 'Vince M. Aquilizan'),
+(45, 70, 'request', 'Lynch Jermaine C has an edit request. Check and validate it now.', 'unread', '2024-02-22 01:13:42', 'Administrator', '66'),
+(46, 71, 'request', 'Lynch Jermaine C has an edit request. Check and validate it now.', 'unread', '2024-02-22 01:40:27', 'Administrator', '66'),
+(47, 72, 'request', 'Lynch Jermaine C has an edit request. Check and validate it now.', 'unread', '2024-02-22 01:46:42', 'Administrator', '66'),
+(48, 73, 'request', 'Lynch Jermaine C has an edit request. Check and validate it now.', 'unread', '2024-02-22 01:46:58', 'Administrator', '66'),
+(49, 70, 'request', 'Adminstrator has an edit your request. Check it.', 'read', '2024-02-22 04:55:00', '66', 'Administrator'),
+(50, 25, 'reply', ' Vince M. Aquilizan replied to your announcement. You can check and comment now.', 'unread', '2024-02-22 06:13:22', 'Administrator', 'Vince M. Aquilizan'),
+(51, 65, 'comment', 'Vince M. Aquilizan commented on your announcement. You can check and comment now.', 'unread', '2024-02-22 06:26:20', 'Administrator', 'Vince M. Aquilizan'),
+(52, 66, 'comment', 'Vince M. Aquilizan commented on your announcement. You can check and comment now.', 'unread', '2024-02-22 06:26:34', 'Administrator', 'Vince M. Aquilizan'),
+(53, 67, 'comment', 'Vince M. Aquilizan commented on your announcement. You can check and comment now.', 'unread', '2024-02-22 07:35:01', 'Administrator', 'Vince M. Aquilizan'),
+(54, 68, 'comment', 'Vince M. Aquilizan commented on your announcement. You can check and comment now.', 'unread', '2024-02-22 07:36:06', 'Administrator', 'Vince M. Aquilizan'),
+(55, 69, 'comment', 'Vince M. Aquilizan commented on your announcement. You can check and comment now.', 'unread', '2024-02-22 07:37:05', 'Administrator', 'Vince M. Aquilizan'),
+(56, 70, 'comment', 'Vince M. Aquilizan commented on your announcement. You can check and comment now.', 'unread', '2024-02-22 07:37:29', 'Administrator', 'Vince M. Aquilizan'),
+(57, 71, 'comment', 'Vince M. Aquilizan commented on your announcement. You can check and comment now.', 'unread', '2024-02-22 07:38:02', 'Administrator', 'Vince M. Aquilizan'),
+(58, 72, 'comment', 'Vince M. Aquilizan commented on your announcement. You can check and comment now.', 'read', '2024-02-22 07:38:49', 'Administrator', 'Vince M. Aquilizan'),
+(59, 73, 'comment', 'Vince M. Aquilizan commented on your announcement. You can check and comment now.', 'read', '2024-02-22 07:39:10', 'Administrator', 'Vince M. Aquilizan'),
+(60, 74, 'request', 'Lynch Jermaine C has an edit request. Check and validate it now.', 'read', '2024-02-22 07:59:52', 'Administrator', '66'),
+(61, 74, 'request', 'Adminstrator has an edit your request. Check it.', 'read', '2024-02-22 08:00:37', '66', 'Administrator'),
+(62, 71, 'request', 'Vince M. Aquilizan has an edit request. Check and validate it now.', 'read', '2024-02-22 08:00:46', '66', 'Administrator'),
+(63, 71, 'request', 'Vince M. Aquilizan has an edit request. Check and validate it now.', 'read', '2024-02-22 08:01:18', '66', 'Administrator'),
+(64, 73, 'request', 'Vince M. Aquilizan has an edit request. Check and validate it now.', 'read', '2024-02-22 08:01:47', '66', 'Administrator'),
+(65, 75, 'request', 'Lynch Jermaine C has an edit request. Check and validate it now.', 'read', '2024-02-22 08:03:04', 'Administrator', '66'),
+(66, 75, 'request', 'Vince M. Aquilizan has an edit request. Check and validate it now.', 'read', '2024-02-22 08:03:19', '66', 'Administrator'),
+(67, 76, 'request', 'Lynch Jermaine C has an edit request. Check and validate it now.', 'read', '2024-02-22 08:03:31', 'Administrator', '66'),
+(68, 76, 'request', 'Vince M. Aquilizan has an edit request. Check and validate it now.', 'read', '2024-02-22 08:04:00', '66', 'Administrator'),
+(69, 76, 'request', 'Vince M. Aquilizan has an edit request. Check and validate it now.', 'read', '2024-02-22 08:08:03', '66', 'Administrator'),
+(70, 76, 'request', 'Vince M. Aquilizan has an edit request. Check and validate it now.', 'read', '2024-02-22 08:08:14', '66', 'Administrator'),
+(71, 76, 'request', 'Vince M. Aquilizan has an edit request. Check and validate it now.', 'read', '2024-02-22 08:08:42', '66', 'Administrator'),
+(72, 76, 'request', 'Vince M. Aquilizan has an edit request. Check and validate it now.', 'unread', '2024-02-22 08:08:45', '66', 'Administrator'),
+(73, 76, 'request', 'Vince M. Aquilizan has an edit request. Check and validate it now.', 'unread', '2024-02-22 08:09:02', '66', 'Administrator'),
+(74, 77, 'request', 'Vince M. Aquilizan has an edit request. Check and validate it now.', 'unread', '2024-02-22 08:19:48', 'Administrator', '66'),
+(75, 78, 'request', 'Vince M. Aquilizan has an edit request. Check and validate it now.', 'unread', '2024-02-22 08:20:47', 'Administrator', '66'),
+(76, 79, 'request', 'Vince M. Aquilizan has an edit request. Check and validate it now.', 'unread', '2024-02-22 08:23:34', 'Administrator', '66');
 
 -- --------------------------------------------------------
 
@@ -179,7 +243,8 @@ INSERT INTO `replies` (`reply_id`, `commentid`, `reply_text`, `reply_created_at`
 (21, 52, 'Hello, World', '2024-01-17 08:07:36', '22', 'read'),
 (22, 55, 'kumusta', '2024-02-03 03:05:12', '312317', 'read'),
 (23, 57, 'hello', '2024-02-03 03:43:48', '22', 'read'),
-(24, 59, 'Hello world', '2024-02-21 12:27:41', '9', 'read');
+(24, 59, 'Hello world', '2024-02-21 12:27:41', '9', 'read'),
+(25, 64, 'mm', '2024-02-22 13:13:22', '9', 'read');
 
 -- --------------------------------------------------------
 
@@ -264,7 +329,23 @@ INSERT INTO `request_info` (`request_info_id`, `scholar_id`, `firstname`, `middl
 (60, 49, '', '', '', '', 0, '', '', '', '', '0000-00-00', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '88', '', 'Carter Rivera', 'Carter Rivera', 'Gil Tanner', 'Velit sunt', 'Enim saepe dolor eaq', 0, 'Commodo officia veni', '', '', 'Reuben Castro', 'Alana Bradshaw', 'Benedict Chang', 'In natus adipisci ve', 'Deleniti cillum volu', 0, '', 'Ullam aliqua Molest', '', '', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'accept', '2'),
 (61, 49, '', '', '', '', 0, '', '', '', '', '0000-00-00', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', 'Corporis quis dolore', 1993, 2013, '', 'Corporis quis dolore', 1981, '', 'Ut rem quo officiis ', 1973, 2012, '', 1997, 'accept', '3'),
 (62, 49, '', '', '', '', 0, '', '', '', '', '0000-00-00', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', 'Corporis quis dolore', 2024, 2024, '', 'Corporis quis dolore', 2024, '', 'Ut rem quo officiis ', 2024, 2024, '', 2024, 'deny', '3'),
-(63, 49, '', '', '', '', 0, '', '', '', '', '0000-00-00', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', 'Corporis quis dolore', 2024, 2024, '', 'Corporis quis dolore', 2024, '', 'Ut rem quo officiis ', 2024, 2024, '', 2024, 'deny', '3');
+(63, 49, '', '', '', '', 0, '', '', '', '', '0000-00-00', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', 'Corporis quis dolore', 2024, 2024, '', 'Corporis quis dolore', 2024, '', 'Ut rem quo officiis ', 2024, 2024, '', 2024, 'deny', '3'),
+(64, 49, 'Kouta', 'Michael B.', 'Yuzuki', '\\\'\\\'', 0, '', 'Kapatiran St, Brgy. Camilmil', '', '', '2024-02-14', 'koutayuzuki565@gmail.com', 0, 0, '\\\'aa\\\'', '\\\'x\\\'', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'accept', '1'),
+(65, 49, 'Kouta', 'Michael B.', 'Yuzuki', '\'\\\\\\\'\\\\\\\'\'', 0, '', 'Kapatiran St, Brgy. Camilmil', '', '', '2024-02-20', 'koutayuzuki565@gmail.com', 0, 0, '\'aa\'', '\'\\\\\\\'x\\\\\\\'\'', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'accept', '1'),
+(66, 49, 'Kouta', 'Michael B.', 'Yuzuki', '\'\\\'\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\'\\\'\'', 0, '', 'Kapatiran St, Brgy. Camilmil', '', '', '2024-02-06', 'koutayuzuki565@gmail.com', 0, 0, '\'\\\'aa\\\'\'', '\'\\\'\\\\\\\\\\\\\\\'x\\\\\\\\\\\\\\\'\\\'\'', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'accept', '1'),
+(67, 49, 'Kouta', 'Michael B.', 'Yuzuki', 'x', 0, '', 'Kapatiran St, Brgy. Camilmil', '', '', '2024-01-29', 'koutayuzuki565@gmail.com', 0, 0, 'x', 'x', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'deny', '1'),
+(68, 49, 'Kouta', 'Michael B.', 'Aquilizan', 'x', 0, '', 'Kapatiran St, Brgy. Camilmil', '', '', '2024-02-21', 'rikkunanase7@gmail.com', 0, 0, 'x', 'x', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'accept', '1'),
+(69, 49, 'Kouta', 'Michael B.', 'Yuzuki', 'x', 0, '', 'Kapatiran St, Brgy. Camilmil', '', '', '2024-02-21', 'koutayuzuki565@gmail.com', 0, 0, 'x', 'x', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'accept', '1'),
+(70, 66, 'Vince', 'Michael B.', 'Aquilizan', 'Minim et quaerat qui', 62, '', 'Kapatiran St, Brgy. Camilmil', '', '', '2024-02-02', 'rikkunanase7@gmail.com', 9981760252, 0, 'Catholic', 'Filipino', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'accept', '1'),
+(71, 66, '', '', '', '', 0, '', '', '', '', '0000-00-00', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '12', '', 'Vince', 'Vince', 'Aquilizan', 'a', 'a', 0, 'a', '', '', 'Cole', 'Kirsten Collins', 'Atkins', 'Father', 'a', 0, '', 'a', '', '', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'accept', '2'),
+(72, 66, '', '', '', '', 0, '', '', '', '', '0000-00-00', '', 0, 0, '', '', '', '', '', '', '', '', 'Kouta Michael B. Yuzuki', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '1st year', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'deny', '4'),
+(73, 66, '', '', '', '', 0, '', '', '', '', '0000-00-00', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', 's', 2024, 2024, '', 's', 2024, '', 's', 2024, 2024, '', 2024, 'accept', '3'),
+(74, 66, 'Vince', 'Michael B.', 'Aquilizan', 'Minim et quaerat qui', 62, '', 'Kapatiran St, Brgy. Camilmil', '', '', '2024-02-02', 'rikkunanase7@gmail.com', 9981760252, 0, 'Catholic', 'Filipino', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'accept', '1'),
+(75, 66, '', '', '', '', 0, '', '', '', '', '0000-00-00', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '35', '', 'Francesca Dominguez', 'Francesca Dominguez', 'Melinda Perez', 'Ut vel ani', 'Impedit non veniam', 0, 'Voluptatum ratione d', '', '', 'Maia Snow', 'Bevis Mccarty', 'Jasmine Wooten', 'Atque consequatur b', 'Ut impedit debitis ', 0, '', 'Ullamco animi assum', '', '', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'accept', '2'),
+(76, 66, '', '', '', '', 0, '', '', '', '', '0000-00-00', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '92', '', 'Charissa Dominguez', 'Charissa Dominguez', 'Laurel Parks', 'Amet vitae', 'Sit et similique bla', 0, 'Quis rerum sed commo', '', '', 'Emily Stewart', 'Kristen Irwin', 'Graham Burns', 'Beatae voluptatem pl', 'In nisi aut nisi rer', 0, '', 'Reprehenderit ex vo', '', '', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'accept', '2'),
+(77, 66, '', '', '', '', 0, '', '', '', '', '0000-00-00', '', 0, 0, '', '', '', '', '', '', '', '', 'Kouta Michael B. Yuzuki', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '1st year', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'deny', '4'),
+(78, 66, '', '', '', '', 0, '', '', '', '', '0000-00-00', '', 0, 0, '', '', '', '', '', '', '', '', 'Kouta Michael B. Yuzuki', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '1st year', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'deny', '4'),
+(79, 66, '', '', '', '', 0, '', '', '', '', '0000-00-00', '', 0, 0, '', '', '', '', '', '', '', '', 'Kouta Michael B. Yuzuki', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '1st year', '', 0, 0, '', '', 0, '', '', 0, 0, '', 0, 'deny', '4');
 
 -- --------------------------------------------------------
 
@@ -367,7 +448,8 @@ CREATE TABLE `scholar_info` (
   `secondary_year_to` int(11) DEFAULT NULL,
   `remarks` text DEFAULT NULL,
   `graduate` text DEFAULT NULL,
-  `graduated_at` text DEFAULT NULL,
+  `graduated_at` timestamp NULL DEFAULT NULL,
+  `terminated_at` timestamp NULL DEFAULT NULL,
   `request_status` varchar(100) NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -376,18 +458,9 @@ CREATE TABLE `scholar_info` (
 -- Dumping data for table `scholar_info`
 --
 
-INSERT INTO `scholar_info` (`scholar_id`, `user_id`, `firstname`, `middlename`, `lastname`, `suffix`, `age`, `gender`, `address`, `scholar_region`, `presentaddress`, `birthdate`, `email`, `phone_num`, `telephone_number`, `religion`, `citizenship`, `OFW_firstname`, `OFW_middlename`, `OFW_lastname`, `OFW_suffix`, `OFW_relationship`, `OFW_email`, `category`, `school`, `school_address`, `program`, `number_siblings`, `fatherstatus`, `father_fname`, `father_mname`, `father_lname`, `father_suffix`, `father_occupation`, `father_contactnum`, `Father_Educ`, `father_email`, `motherstatus`, `mother_fname`, `mother_mname`, `mother_lname`, `mother_suffix`, `mother_occupation`, `mother_contactnum`, `mother_email`, `mother_Educ`, `Course`, `year_level`, `primary_school`, `primary_year_from`, `primary_year_to`, `primary_award`, `secondary_school`, `secondary_year_from`, `secondary_award`, `tertiary_school`, `tertiary_year_from`, `tertiary_year_to`, `tertiary_award`, `secondary_year_to`, `remarks`, `graduate`, `graduated_at`, `request_status`, `deleted_at`) VALUES
-(49, 8, '\'Kouta\'', '\'Michael B.\'', '\'Aquilizan\'', '\'\'', 0, 'Male', '\'Kapatiran St, Brgy. Camilmil\'', NULL, NULL, '0000-00-00', '\'rikkunanase7@gmail.com\'', 0, NULL, '\'aa\'', '\'x\'', 'Vince', 'Michael B.', 'Aquilizan', '', 's', 'onetaquilizan@yahoo.com', 'Land based', NULL, NULL, 'ODSP+', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
-(51, 26, 'Vince', 'Michael B.', 'Aquilizan', 'Sed magna corrupti ', 67, 'Male', 'Kapatiran St, Brgy. Camilmil', 'Mindoro Oriental', NULL, '2024-02-16', 'docivibyd@mailinator.com', 998, NULL, NULL, NULL, 'Nathaniel', 'Quemby Ward', '1', 'Et dolores', 'Ipsam ipsum ipsum o', 'terefojo@mailinator.com', 'Land based', NULL, NULL, 'EDSP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
-(52, 28, 'Jarrod', 'Shea Gallegos', 'Garner', 'Officia in vitae eli', 41, 'Male', 'Eaque omnis deleniti', 'Marinduque', NULL, '0000-00-00', 'viquvazo@mailinator.com', 999, NULL, NULL, NULL, 'Sandra', 'Lana Herrera', 'Dixon', 'Enim magni', 'Exercitation ea quis', 'luku@mailinator.com', 'Land based', NULL, NULL, 'ODSP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
-(53, 30, 'Bianca', 'Samson Roman', 'White', 'Velit rerum iusto de', 46, 'Female', 'Id architecto adipi', 'Mindoro Occidental', NULL, '0000-00-00', 'rylop@mailinator.com', 0, NULL, NULL, NULL, 'Imelda', 'Beatrice Haley', 'Fernandez', 'Ipsum ut v', 'Aliqua Eum quod rep', 'gajar@mailinator.com', 'Land based', NULL, NULL, 'ODSP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
-(55, 34, 'Bianca', 'Samson Roman', 'White', 'Velit rerum iusto de', 46, 'Male', 'Id architecto adipi', 'Mindoro Occidental', NULL, '2024-02-08', 'rylopss@mailinator.com', 0, NULL, NULL, NULL, 'Imelda', 'Beatrice Haley', 'Fernandez', 'Ipsum ut v', 'Aliqua Eum quod rep', 'gajar@mailinator.com', 'Land based', NULL, NULL, 'EDSP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
-(56, 36, 'Bianca', 'Samson Roman', 'White', 'Velit rerum iusto de', 46, 'Male', 'Id architecto adipi', 'Mindoro Occidental', NULL, '2024-02-08', 'rylooooopss@mailinator.com', 0, NULL, NULL, NULL, 'Imelda', 'Beatrice Haley', 'Fernandez', 'Ipsum ut v', 'Aliqua Eum quod rep', 'gajar@mailinator.com', 'Land based', NULL, NULL, 'EDSP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
-(58, 40, 'Bianca', 'Samson Roman', 'White', 'Velit rerum iusto de', 46, 'Male', 'Id architecto adipi', 'Mindoro Occidental', NULL, '2024-02-08', 'rylooooffopss@mailinator.com', 0, NULL, NULL, NULL, 'Imelda', 'Beatrice Haley', 'Fernandez', 'Ipsum ut v', 'Aliqua Eum quod rep', 'gajar@mailinator.com', 'Land based', NULL, NULL, 'EDSP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
-(60, 44, 'Bianca', 'Samson Roman', 'White', 'Velit rerum iusto de', 46, 'Male', 'Id architecto adipi', 'Mindoro Occidental', NULL, '2024-02-08', 'rylooooffsdopss@mailinator.com', 0, NULL, NULL, NULL, 'Imelda', 'Beatrice Haley', 'Fernandez', 'Ipsum ut v', 'Aliqua Eum quod rep', 'gajar@mailinator.com', 'Land based', NULL, NULL, 'EDSP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
-(61, 46, 'Bianca', 'Samson Roman', 'White', 'Velit rerum iusto de', 46, 'Male', 'Id architecto adipi', 'Mindoro Occidental', NULL, '2024-02-08', 'rylooooffsdosaspss@mailinator.com', 0, NULL, NULL, NULL, 'Imelda', 'Beatrice Haley', 'Fernandez', 'Ipsum ut v', 'Aliqua Eum quod rep', 'gajar@mailinator.com', 'Land based', NULL, NULL, 'EDSP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
-(62, 48, 'Bianca', 'Samson Roman', 'White', 'Velit rerum iusto de', 46, 'Male', 'Id architecto adipi', 'Mindoro Occidental', NULL, '2024-02-08', 'rylooooffsdobhgsaspss@mailinator.com', 0, NULL, NULL, NULL, 'Imelda', 'Beatrice Haley', 'Fernandez', 'Ipsum ut v', 'Aliqua Eum quod rep', 'gajar@mailinator.com', 'Land based', NULL, NULL, 'ELAP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
-(63, 50, 'Ivy', 'Kiayada Mason', 'Montgomery', 'Quis atque ullamco d', 4, 'Female', 'Quidem quo rerum lab', NULL, NULL, '0000-00-00', 'gaposoj@mailinator.com', 999, NULL, NULL, NULL, 'Allistair', 'Larissa Cain', 'Daugherty', 'Sed est es', 'Cillum nostrum quide', 'xikotyz@mailinator.com', 'Land based', NULL, NULL, 'ELAP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2024-02-21 12:28:51');
+INSERT INTO `scholar_info` (`scholar_id`, `user_id`, `firstname`, `middlename`, `lastname`, `suffix`, `age`, `gender`, `address`, `scholar_region`, `presentaddress`, `birthdate`, `email`, `phone_num`, `telephone_number`, `religion`, `citizenship`, `OFW_firstname`, `OFW_middlename`, `OFW_lastname`, `OFW_suffix`, `OFW_relationship`, `OFW_email`, `category`, `school`, `school_address`, `program`, `number_siblings`, `fatherstatus`, `father_fname`, `father_mname`, `father_lname`, `father_suffix`, `father_occupation`, `father_contactnum`, `Father_Educ`, `father_email`, `motherstatus`, `mother_fname`, `mother_mname`, `mother_lname`, `mother_suffix`, `mother_occupation`, `mother_contactnum`, `mother_email`, `mother_Educ`, `Course`, `year_level`, `primary_school`, `primary_year_from`, `primary_year_to`, `primary_award`, `secondary_school`, `secondary_year_from`, `secondary_award`, `tertiary_school`, `tertiary_year_from`, `tertiary_year_to`, `tertiary_award`, `secondary_year_to`, `remarks`, `graduate`, `graduated_at`, `terminated_at`, `request_status`, `deleted_at`) VALUES
+(66, 56, 'Vince', 'Michael B.', 'Aquilizan', 'Minim et quaerat qui', 62, 'Male', 'Kapatiran St, Brgy. Camilmil', NULL, NULL, '2024-02-02', 'rikkunanase7@gmail.com', 9981760252, NULL, 'Catholic', 'Filipino', 'Zephr', 'Xavier Crosby', 'Orr', 'Dolor volu', 'Ut enim et omnis con', 'xerar@mailinator.com', 'Land based', NULL, NULL, 'ODSP+', '92', NULL, 'Charissa Dominguez', 'Charissa Dominguez', 'Laurel Parks', 'Amet vitae', 'Sit et similique bla', NULL, 'Quis rerum sed commo', NULL, NULL, 'Emily Stewart', 'Kristen Irwin', 'Graham Burns', 'Beatae voluptatem pl', 'In nisi aut nisi rer', 0, NULL, 'Reprehenderit ex vo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
+(67, 58, 'pufan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-22 11:55:07', '', NULL);
 
 --
 -- Triggers `scholar_info`
@@ -514,12 +587,13 @@ CREATE TABLE `upload_documents` (
 --
 
 INSERT INTO `upload_documents` (`document_id`, `document_name`, `document_size`, `document_description`, `date_submitted`, `document_status`, `report_sender`, `year_level`, `semester`, `deleted_at`) VALUES
-(1, 'Screenshot (322).png', '', 'Certificate of Grades', '2024-02-20 02:15:48', 'unread', '49', '1st year', '1st Semester', NULL),
-(2, 'Screenshot (323).png', '', 'Semestrial Report', '2024-02-20 02:17:37', 'unread', '49', '1st year', '2nd Semester', '2024-02-21 08:28:02'),
-(3, 'Screenshot (323).png', '', 'Semestrial Report', '2024-02-21 09:25:50', 'unread', '49', '1st year', '2nd Semester', '2024-02-21 08:29:12'),
-(4, 'Screenshot (323).png', '', 'Semestrial Report', '2024-02-21 09:27:25', 'unread', '49', '1st year', '2nd Semester', NULL),
-(5, 'Screenshot (323).png', '', 'Semestrial Report', '2024-02-21 09:28:02', 'unread', '49', '1st year', '2nd Semester', NULL),
-(6, 'Screenshot (323).png', '', 'Semestrial Report', '2024-02-21 09:29:12', 'unread', '49', '2nd year', '2nd Semester', NULL);
+(12, 'Cursor-Arrow-PNG-Photos.png', '', 'Certificate of Grades', '2024-02-21 17:56:39', 'unread', '49', '1st year', '1st Semester', NULL),
+(13, 'Cursor-Arrow-PNG-Photos (1).png', '', 'Certificate of Grades', '2024-02-22 10:18:41', 'unread', '66', '1st year', '1st Semester', '2024-02-22 12:14:44'),
+(14, '423105785_7738480529498363_8454954821517838654_n.jpg', '', 'Certificate of Grades', '2024-02-22 13:16:21', 'unread', '66', '1st year', '1st Semester', '2024-02-22 12:16:37'),
+(15, '423105785_7738480529498363_8454954821517838654_n.jpg', '', 'Certificate of Grades', '2024-02-22 13:16:37', 'unread', '66', '2nd year', '1st Semester', '2024-02-22 12:22:25'),
+(16, '423105785_7738480529498363_8454954821517838654_n.jpg', '', 'Semestrial Report', '2024-02-22 13:22:21', 'unread', '66', '2nd year', '1st Semester', '2024-02-22 12:22:38'),
+(17, '423105785_7738480529498363_8454954821517838654_n.jpg', '', 'Semestrial Report', '2024-02-22 13:22:25', 'unread', '66', '2nd year', '1st Semester', '2024-02-22 12:22:34'),
+(18, '423105785_7738480529498363_8454954821517838654_n.jpg', '', 'Transcript Record', '2024-02-22 13:22:38', 'unread', '66', '2nd year', '1st Semester', NULL);
 
 -- --------------------------------------------------------
 
@@ -574,7 +648,14 @@ INSERT INTO `user_acc` (`USERID`, `NAME`, `username`, `account_password`, `TYPE`
 (48, 'White Bianca S', 'rylooooffsdobhgsaspss@mailinator.com', 'BiancaELAP46', 'Scholar', 'activate', 'accept', 'Mindoro Occidental'),
 (49, 'Imelda B. Fernandez', 'gajar@mailinator.com', 'OWWA@parent123', 'Parent', 'active', '', 'Mindoro Occidental'),
 (50, 'Montgomery Ivy K', 'gaposoj@mailinator.com', 'IvyELAP4', 'Scholar', 'activate', '', 'Romblon'),
-(51, 'Allistair L. Daugherty', 'xikotyz@mailinator.com', 'OWWA@parent123', 'Parent', 'active', '', 'Romblon');
+(51, 'Allistair L. Daugherty', 'xikotyz@mailinator.com', 'OWWA@parent123', 'Parent', 'active', '', 'Romblon'),
+(52, 'Sloan Brittany A', 'fapaty@mailinator.com', 'BrittanyEDSP+36', 'Scholar', 'activate', '', 'Mindoro Occidental'),
+(53, 'Dora L. Boyer', 'vekipew@mailinator.com', 'OWWA@parent123', 'Parent', 'active', '', 'Mindoro Occidental'),
+(54, 'Aquilizan Vince M', 'rikkunanase7@gmail.com', 'VinceEDSP67', 'Scholar', 'activate', '', 'Mindoro Oriental'),
+(55, 'Charles M. Savage', 'gycehumotu@mailinator.com', 'OWWA@parent123', 'Parent', 'active', '', 'Mindoro Oriental'),
+(56, 'Lynch Jermaine C', 'sorivudalu@mailinator.com', 'JermaineODSP+62', 'Scholar', 'activate', 'accept', 'Mindoro Oriental'),
+(57, 'Zephr X. Orr', 'xerar@mailinator.com', 'OWWA@parent123', 'Parent', 'active', '', 'Mindoro Oriental'),
+(58, 'pufan', 'kisymyde@mailinator.com', 'ac748cb38ff28d1ea98458b16695739d7e90f22d', 'Administrator', 'activate', '', '');
 
 --
 -- Indexes for dumped tables
@@ -650,31 +731,31 @@ ALTER TABLE `user_acc`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id_announcement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_announcement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `replies`
 --
 ALTER TABLE `replies`
-  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `request_info`
 --
 ALTER TABLE `request_info`
-  MODIFY `request_info_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `request_info_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `scholartask`
@@ -686,19 +767,19 @@ ALTER TABLE `scholartask`
 -- AUTO_INCREMENT for table `scholar_info`
 --
 ALTER TABLE `scholar_info`
-  MODIFY `scholar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `scholar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `upload_documents`
 --
 ALTER TABLE `upload_documents`
-  MODIFY `document_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `document_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `user_acc`
 --
 ALTER TABLE `user_acc`
-  MODIFY `USERID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `USERID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- Constraints for dumped tables
