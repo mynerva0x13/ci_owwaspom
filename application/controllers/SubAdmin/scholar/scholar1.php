@@ -48,20 +48,26 @@ class scholar1 extends CI_Controller
             $key = count($id);
 
             print_r($id);
-            for($i=0;$i<$key;$i++){ 
 
-            $student = New Student();
-            $student->delete($id[$i]);
-            $msg = ""; 
+            // $student = New Student();
+            // $student->delete($id[$i]);
+
+            // $msg = ""; 
         if (isset($_POST['terminate'])) {
             $msg = "Terminated";
+            $t = "terminated_at";
         }
         
         if (isset($_POST['activate'])) {
 
             $msg = "Graduated";
+            $t = "graduated_at";
         }
 
+        echo $t;
+        for($i=0;$i<$key;$i++){ 
+            $this->db->query("UPDATE scholar_info SET $t = NOW() WHERE scholar_id =".$id[$i]);
+        }
             // $sy = new Schoolyear();
             // $sy->delete($id[$i]);
 
@@ -69,7 +75,6 @@ class scholar1 extends CI_Controller
             // $parent = New Parents();
             // $parent->delete($id[$i]);
 
-        }
         
             $this->input->set_cookie(array(
                 "name" => "message",

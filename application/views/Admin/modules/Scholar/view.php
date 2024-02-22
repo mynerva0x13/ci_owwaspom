@@ -1,8 +1,8 @@
 <?php
 @$IDNO = $_GET['id'];
 @$syid = $_GET['sy'];
-$student = new Student();
-$result = $student->single_students($IDNO);
+
+$ids = (!empty($_GET['id'])) ? "AND notif_creator=".$_GET['id'] : null;
 ?>
 
 <?php echo $response ?>
@@ -13,6 +13,7 @@ $result = $student->single_students($IDNO);
 
                         <div class="card-body pt-0">
                         <h3>Edit Request Approval</h3>
+						<?php if(!empty($_GET["id"])) { ?>
                         <div class="row">
                         <div class="col-sm-5">
                         <div class="form-group">
@@ -44,7 +45,8 @@ $result = $student->single_students($IDNO);
                         </div>
                         <!-- <input name="notification_id" type="hidden" value="<?php echo $result->catch_id ?>"> -->
                         <?php
-                           $notifications = $this->db->query("SELECT * FROM `notification` WHERE notification_for = 'Administrator' AND notification_status = 'unread'")->result();
+
+                           $notifications = $this->db->query("SELECT * FROM `notification` WHERE notification_for = 'Administrator' AND notification_status = 'unread' $ids")->result();
 
                             foreach ($notifications as $notification) {
                                 $type = $notification->notification_type;
@@ -130,6 +132,7 @@ $result = $student->single_students($IDNO);
                                 </div> 
                             </div>';
                     }
+				}
                     ?>
 
 
@@ -238,25 +241,44 @@ $result = $student->single_students($IDNO);
 							<h4 class="mb-0"><i class="	fas fa-user-friends pr-3"></i>Upload Documents</h4>
 						</div>
 						<div class="card-body pt-0">
-							<table class="table table-striped table-hover table-sm">
+							<table id="example" class="table table-striped table-hover table-sm dataTable ">
 								<thead>
 
 									<th>Filename</th>
+									<th>Documents</th>
 									<th>FileSize</th>
 									<!-- <th>Uploader</th> -->
 									<!-- <th>Status</th>    -->
 									<th>Date/Time Upload</th>
-									<th>Downloads</th>
+									<!-- <th>Downloads</th> -->
 									<th>Action</th>
 
 								</thead>
-
+<tbody>
 								<tr>
+<?php 
+$sql = $this->db->query("SELECT * FROM upload_documents WHERE report_sender=$result->scholar_id")->result();
 
-									<td width="15%">Certificate of Grades </td>
+if(!empty($sql)) {
+	foreach($sql as $item) {
+	echo "<td>$item->document_name</td>";
+	
+	echo "<td>$item->document_description</td>";
+	
+	echo "<td></td>";
+	
+	// echo "<td>$item->document_description</td>";
+	echo "<td>$item->date_submitted</td>";
+	echo "<td>";
+	echo '<a class="btn btn-primary" href="'.base_url($link2."/scholar?view=viewdoc&id=$item->document_id").'">View</a>';
+	echo '<a class="btn btn-primary" href="'.base_url("SubScholar/documents/documentsScholar/doDelete?link=$link2&direct=notif&id=$item->document_id").'">DELETE</a>';
+	echo '<a class="btn btn-primary" href="'.base_url("SubScholar/documents/documentsScholar/downloadfile?link=$link2&direct=notif&id=$item->document_id").'">Download</a>';
+	echo "</td>";
+	} 
+}
+?>
+									<!-- <td width="15%">Certificate of Grades </td>
 									<td> 3KB </td>
-									<!-- <td><?php echo $uploads; ?></td> -->
-									<!-- <td><?php echo $status; ?></td> -->
 									<td>June 29,2023 </td>
 									<td> <i class="fa fa-download" aria-hidden="true" style="font-size: 22px;"></i></td>
 
@@ -272,8 +294,6 @@ $result = $student->single_students($IDNO);
 								</tr>
 								<td width="15%">Certificate of Enrollment </td>
 								<td> 3KB </td>
-								<!-- <td><?php echo $uploads; ?></td> -->
-								<!-- <td><?php echo $status; ?></td> -->
 								<td>June 29,2023 </td>
 								<td> <i class="fa fa-download" aria-hidden="true" style="font-size: 22px;"></i></td>
 
@@ -284,7 +304,7 @@ $result = $student->single_students($IDNO);
 									<button class='btn btn-danger btn-sm' value=''><i class="fa fa-trash"
 											aria-hidden="true"></i></button>
 
-								</td>
+								</td> -->
 
 								</tbody>
 							</table>

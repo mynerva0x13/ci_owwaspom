@@ -34,7 +34,7 @@ class acceptEdit extends CI_Controller
         $recipient = "Admin";
         $time = date('Y-m-d H:i:s');
 
-        $request = new Student();
+        $request = new Request();
         $request->firstname = $firstname;
         $request->middlename = $middlename;
         $request->lastname = $lastname;

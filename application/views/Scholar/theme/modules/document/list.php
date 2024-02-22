@@ -101,8 +101,8 @@
 									echo '<div class="dropdown-content">';
 									echo '<a href="'.base_url("Scholar/documents?view=edit&id=$result->document_id").'">Edit</a>';
 									echo '<a href="'.base_url("Scholar/documents?view=view&id=$result->document_id").'">View</a>';
-									echo '<a onclick="deleteDocument(' . $result->document_id . ')">Delete</a>';
-									echo '<a href="#" onclick="downloadDocument(' . $result->document_id . ')">Download</a>';
+									echo '<a href="'.base_url("SubScholar/documents/documentsScholar/doDelete?id=$result->document_id").'">DELETE</a>';
+									echo '<a href="'.base_url("SubScholar/documents/documentsScholar/downloadfile?id=$result->document_id").'">DELETE</a>';
 									echo '</div>';
 									echo '</div>';
 									echo '</td>';
@@ -117,32 +117,4 @@
 						</table> 
 						</form> 
 
-						<script>function deleteDocument(ids) {
-							let con = confirm("Do you want to delete this table?");
-
-							if(con) {
-								// Basic Fetch Example
-								fetch('<?php echo base_url('SubScholar/documents/documentsScholar/doDelete') ?>',{
-									method: "POST",
-									headers: {
-    'Content-Type': 'application/json'
-  },                                                                                                                                                                                                                                                                                                                                          
-									body: JSON.stringify({
-										id: ids
-									})
-								})
-  								.then(response => {
-									alert("Delete table successfully");
-									document.reload()
-  })
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    // Handle any errors that occurred during the fetch
-    console.error('Fetch error:', error);
-  });
-
-							}
-						}
-							</script>
+						

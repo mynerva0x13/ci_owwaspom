@@ -18,7 +18,7 @@ $url = "SubAdmin/scholar/scholar1/doDelete";
 							<th>Name</th>
 							<!-- <th>LASTNAME</th> -->
 							<!-- <th>CITYADDRESS</th> -->
-							<th>Course</th>
+							<th>Request</th>
 							<th>Program</th>  
 							<th>Contact#</th> 
 							<th width="10%">Action</th>
@@ -33,31 +33,39 @@ $view = "";
 foreach ($cur as $result) {
     echo '<tr>';
     echo '<td width="5%" align="center"></td>';
+
     echo '<td>' . $result->firstname . ' ' . $result->lastname . '</td>';
-    echo '<td>' . $result->Course . '</td>'; 
+	
+if ($result->request_description == "1") {
+    $view = "editme";
+	echo "<td>Scholars Information</td>";
+} elseif ($result->request_description == "2") {
+    $view = "editfam";
+	
+	echo "<td>Family background</td>";
+} elseif ($result->request_description == "3") {
+    $view = "edited";
+	
+	echo "<td>Educational Information</td>";
+} 
+elseif ($result->request_description == "4") {
+    $view = "edit";
+	
+	echo "<td>Scholar Application Information</td>";
+} 
+else {
+    $view = "";
+}
     echo '<td>' . $result->program . '</td>';  
     echo '<td>' . $result->phone_num . '</td>';
     ?>
 <td>
 <?php
 
-if ($result->request_description == "1") {
-    $view = "editme";
-} elseif ($result->request_description == "2") {
-    $view = "editfam";
-} elseif ($result->request_description == "3") {
-    $view = "edited";
-} 
-elseif ($result->request_description == "4") {
-    $view = "edit";
-} 
-else {
-    $view = "";
-}
 ?>
     <a class="btn btn-success text-light" href="<?php echo base_url("Staff/studentProfile?view=" .$view. "&link=$link&id=$result->request_info_id"); ?>">Review</a>
 
-    <a class="btn btn-danger text-light" href="<?php echo base_url("SubScholar/profile/acceptEdit/dodeny?id=$result->request_info_id&link=$link")?>">Reject</a><?php echo $result->request_description ?>
+    <a class="btn btn-danger text-light" href="<?php echo base_url("SubScholar/profile/acceptEdit/dodeny?id=$result->request_info_id&link=$link")?>">Reject</a>
 </td>
     <?php
 }

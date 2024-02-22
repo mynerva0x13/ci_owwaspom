@@ -42,7 +42,7 @@
 
   
     <li class="nav-item <?php echo ($this->Func_Misc->currentpage_admin()  == 'notification') ? 'active' : ''; ?>">
-      <a class="nav-link" href="<?php echo base_url("admin/modules/notification/index.php")?>">
+      <a class="nav-link" href="<?php echo base_url("Admin/notification")?>">
       <?php
 //  print_r($cur->count);
       ?>
@@ -52,7 +52,6 @@
 
       </a>
     </li>
-
 
     <div class="dropdown">
       <li class="nav-item  <?php echo ($this->Func_Misc->currentpage_admin() == 'reports') ? 'active' : ''; ?>" >

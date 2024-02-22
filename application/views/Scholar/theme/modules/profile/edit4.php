@@ -29,7 +29,7 @@
 </style>
 doEditscholarapp
 
-<form class="form-horizontal span6" action="<?php echo base_url('SubScholar/profile/editUser/editUser/doEditscholarapp') ?>" method="POST">
+<form class="form-horizontal span6" action="<?php echo base_url('SubScholar/profile/editUser/doEditscholarapp') ?>" method="POST">
   
   <div class="row">
     <div class="col-lg-12">

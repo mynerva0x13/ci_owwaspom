@@ -60,6 +60,9 @@ class DocumentsSub {
                     true
                 );
                 break;
+                case "delete":
+
+                    break;
             default:
                 $mydb = $self->db->query("SELECT * FROM `upload_documents` WHERE report_sender = (SELECT scholar_id FROM scholar_info WHERE user_id = $user) AND deleted_at is null");
                 $cur = $mydb->result();

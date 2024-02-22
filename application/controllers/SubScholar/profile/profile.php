@@ -71,10 +71,13 @@ class ProfileSub
                 $id = $_SESSION['USERID'];
                 $mydb = $self->db->query("SELECT * FROM  `scholar_info` where user_id = $id ");
                 $cur = $mydb->result();
+
+                $disableButton = $self->db->query("SELECT * FROM request_info WHERE scholar_id = (SELECT scholar_id from scholar_info WHERE user_id = $id) AND request_status = 'pending'")->result();
                 $content = $self->load->view(
                     'Scholar/theme/modules/profile/list',
                     array(
                         "output" => $cur,
+                        "disable" => $disableButton,
                         "response" => $message,
                         "cur" => $cur,
                     ),

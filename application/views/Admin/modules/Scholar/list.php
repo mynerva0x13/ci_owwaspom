@@ -1,5 +1,5 @@
 <?php echo $response;?><?php
-$url = "SubAdmin/scholar/scholar1/doDelete";
+$url = "SubAdmin/scholar/scholar1/doDelete?link=$link";
 
 ?>
 	<div class="row">

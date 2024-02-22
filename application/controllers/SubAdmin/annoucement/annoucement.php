@@ -24,7 +24,7 @@ class announcementSub {
         switch ((!empty($_GET['view'])) ? $_GET['view'] : null) {
             case "view":
                 $title = 'Add';   
-                $mydb = $self->db->query("SELECT * FROM  `announcement` ORDER BY id_announcement DESC");
+                $mydb = $self->db->query("SELECT * FROM  `announcement` WHERE id_announcement = ".$_GET['id']." ORDER BY id_announcement DESC");
                 $cur = $mydb->result();
                 $content = $self->load->view(
                     'Scholar/theme/modules/announcement/view',

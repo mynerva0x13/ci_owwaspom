@@ -47,8 +47,7 @@ class notifSub {
     $self->view_render(array(
         "content"=>$content,
         "title"=>"Notification",
-        "link"=>$link,
-        "script"=>$script
+        "link"=>$link
     ));
     }
 }

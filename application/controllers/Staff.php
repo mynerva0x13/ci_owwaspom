@@ -176,7 +176,8 @@ class Staff extends CI_Controller {
       }
   
     public function notification() {
-        
+    
+    
     $id = $_SESSION['USERID'];
 
     $user = new User();

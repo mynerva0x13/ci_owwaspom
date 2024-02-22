@@ -15,7 +15,22 @@
 	<div class="col-lg-12">
 		<h3>Student Profile</h3>
 		<?php
-	
+function findToDisable($x, $disable) {
+    if (!empty($disable)) {
+        foreach ($disable as $item) {
+            if ($item->request_description == $x) {
+                if ($item->request_status == "pending") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+
 		foreach ($cur as $result) {
 
 
@@ -56,11 +71,20 @@
 										</div>
 									</div>
 									<div class="text-right">
+										<?php
+										
+							if(!findToDisable(1, $disable)){ ?>
 										<a href="<?php echo base_url('Scholar/studentProfile?view=editme&id='.$result->scholar_id) ?>">
 											<button type="button" class="btn btn-success btn-floating">
 												<i class="fa fa-pencil-square-o"></i>
 											</button>
 										</a>
+										<?php 
+							}
+										else {
+echo "<div class='badge bg-warning text-dark'><h5>You can't edit. wait for admin approval</h5></div>";
+										}
+?>
 									</div>
 									<h4 class="mb-0"><i class="fa fa-user pr-3"></i>Scholars Information
 									</h4>
@@ -151,11 +175,21 @@
 											</div>
 										</div>
 										<div class="text-right">
+											<?php
+							if(!findToDisable(2, $disable)){ ?>
 											<a href="<?php echo base_url('Scholar/studentProfile?view=editfam&id='.$result->scholar_id) ?>">
 												<button type="button" class="btn btn-success btn-floating">
 													<i class="fa fa-pencil-square-o"></i>
 												</button>
 											</a>
+											<?php
+							}
+
+else {
+	echo "<div class='badge bg-warning text-dark'><h5>You can't edit. wait for admin approval</h5></div>";
+											}
+
+?>
 										</div>
 										<h4 class="mb-0"><i class="fas fa-user-circle pr-3"></i>Family background</h4>
 									</div>
@@ -234,11 +268,20 @@
 								<div class="card shadow-sm">
 									<div class="card-body bg-transparent border-0">
 										<div class="text-right">
+											<?php
+							if(!findToDisable(3, $disable)){ ?>
 											<a href="<?php echo base_url('Scholar/studentProfile?view=edited&id='.$result->scholar_id )?>">
 												<button type="button" class="btn btn-success btn-floating">
 													<i class="fa fa-pencil-square-o"></i>
 												</button>
-											</a>
+											</a>							<?php
+							}
+
+else {
+	echo "<div class='badge bg-warning text-dark'><h5>You can't edit. wait for admin approval</h5></div>";
+											}
+
+?>
 										</div>
 										<h4 class="mb-0"><i class="	fas fa-user-friends pr-3"></i>Educational Information
 										</h4>
@@ -295,10 +338,20 @@
 								<div class="card shadow-sm">
 									<div class="card-body bg-transparent border-0">
 										<div class="text-right">
-                                        <a href="<?php echo base_url('Scholar/studentProfile?view=editapp&id='.$result->scholar_id )?>">
+                                  <?php
+								  
+							if(!findToDisable(4, $disable)){ ?>
+										<a href="<?php echo base_url('Scholar/studentProfile?view=editapp&id='.$result->scholar_id )?>">
 											<button type="button" class="btn btn-success btn-floating">
 													<i class="fa fa-pencil-square-o"></i>
-												</button></a>
+												</button></a>							<?php
+							}
+
+else {
+	echo "<div class='badge bg-warning text-dark'><h5>You can't edit. wait for admin approval</h5></div>";
+											}
+
+?>
 										</div>
 										<h4 class="mb-0"><i class="	fas fa-user-friends pr-3"></i>Scholar Application
 											Information</h4>

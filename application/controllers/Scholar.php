@@ -89,7 +89,7 @@ class Scholar extends CI_Controller {
 
     public function index() {
         $this->accountSession();
-        $student = $this->Student->single_student_userid($_SESSION['USERID'] );
+        $student = $this->Student->single_student_userid($_SESSION['USERID']);
         $accountID = $student->scholar_id;
 
         echo $accountID;

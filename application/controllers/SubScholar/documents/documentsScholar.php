@@ -21,14 +21,71 @@ class documentsScholar extends CI_Controller
 
 	public function doDelete() 
 	{
-		header('Content-Type: application/json');
-		$rawData = file_get_contents("php://input");
+	
+		$id = $_GET['id'];
+		$mydb = $this->db->query("UPDATE `upload_documents` SET deleted_at = NOW() WHERE document_id=".$id);
+						
 
-		// Decode the JSON data
-		$postData = json_decode($rawData, true);
-		
-		echo json_encode($_POST);
+						$this->input->set_cookie(array(
+							"name" => "message",
+							"value" => json_encode(array(
+								"message" => "New " . $document_name . " created and file uploaded successfully!",
+								"type" => "success"
+							)),
+							'expire' => 1
+						));
+						
+						if($_GET['direct']=="notif") {
+							redirect($_GET['link']."/scholar?view=view&id=$id");
+							exit;
+						}
+						redirect("Scholar/documents");
 	}
+
+	public function downloadfile() {
+		if (!empty($_GET['id']) && is_numeric($_GET['id'])) {
+			$file_id = $_GET['id'];
+			$mydb = $this->db->query("SELECT * FROM `upload_documents` INNER JOIN scholar_info ON scholar_id = report_sender WHERE document_id = {$file_id}")->result()[0];
+	
+			if ($mydb) {
+				$program = ($mydb->program);
+				$lastname = ($mydb->lastname);
+				$firstname = ($mydb->firstname);
+				$middlename = ($mydb->middlename);
+	
+				$file_path = "scholars_document/{$program}/{$lastname}_{$firstname}_{$middlename}/$mydb->document_name";
+	
+				if (file_exists($file_path) && is_readable($file_path)) {
+					ob_clean();
+					header('Content-Type: application/octet-stream');
+					header('Content-Disposition: attachment; filename="' . urlencode(basename($file_path)) . '"');
+					header('Content-Length: ' . filesize($file_path));
+					header('Cache-Control: must-revalidate');
+					header('Pragma: public');
+	
+					readfile($file_path);
+					
+					if($_GET['direct']=="notif") {
+						redirect($_GET['link']."/scholar?view=view&id=$id");
+						exit;
+					}
+					redirect("Scholar/documents");
+					
+					exit;
+				} else {
+					// File not found or not readable
+					echo "File not found or not readable.";
+				}
+			} else {
+				// File not found in the database
+				echo "File not found in the database.";
+			}
+		} else {
+			// Invalid or missing file ID
+			echo "Invalid or missing file ID.";
+		}
+	}
+	
 	public function doEdit() {
 		if (isset($_POST['save'])) {
 			$notification_content = "".$_SESSION['NAME'] ." uploaded documents. You can check it now.";
@@ -55,7 +112,7 @@ class documentsScholar extends CI_Controller
 				$target_directory = "scholars_document/". $program ."/". $username ."/";
 				
 				if (!is_dir($target_directory)) {
-					mkdir($target_directory, 0777, true);
+					mkdir($target_directory);
 				}
 
 				$target_file = $target_directory . $file_name;
@@ -101,7 +158,7 @@ class documentsScholar extends CI_Controller
 							'expire' => 1
 						));
 						
-						redirect("Scholar/documents");
+						// redirect("Scholar/documents");
 			}
 	}
     public function doInsert()
@@ -142,7 +199,7 @@ class documentsScholar extends CI_Controller
 					$target_directory = "scholars_document/". $program ."/". $username ."/";
 					
                     if (!is_dir($target_directory)) {
-                        mkdir($target_directory, 0777, true);
+                        mkdir($target_directory);
                     }
 
                     $target_file = $target_directory . $file_name;

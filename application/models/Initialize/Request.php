@@ -79,26 +79,29 @@ class Request extends CI_Model {
     }
 
     public function create() {
-        $attributes = $this->sanitized_attributes();
-        // print_r($attributes);
+        $attributes = $this->attributes();
         $table_columns = implode(',', array_keys($attributes));
-        $table_val = implode(',', $attributes);
-        $sql = "INSERT INTO $this->tblname($table_columns) VALUES($table_val)";
-        $this->db->query($sql);
-
+        $placeholders = implode(',', array_fill(0, count($attributes), '?'));
+    
+        $sql = "INSERT INTO $this->tblname($table_columns) VALUES($placeholders)";
+    
+        $values = array_values($attributes);
+        $this->db->query($sql, $values);
+    
         if ($this->db->affected_rows() > 0) {
             $this->id = $this->getLastInsertId();
             return true;
         } else {
             return false;
         }
-        return true;
     }
+    
 
     public function update($id = 0) {
-        $attributes = $this->sanitized_attributes();
-        $this->db->where('request_info_id', $id);
-        $this->db->update($this->tblname, $attributes);
+        $attributes = $this->attributes();
+        // print_r($attributes);
+        $this->db->where('scholar_id', $id);
+        $this->db->update("scholar_info", $attributes);
         return $this->db->affected_rows() > 0;
     }
 

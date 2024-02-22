@@ -71,7 +71,7 @@ class Login extends CI_Controller {
                                 "message" => $user['message'],
                                 "type" => $user['style']
                             )),
-                            'expire' => 1
+                            'expire' => 3
                         )); 
                   
                         redirect("login");

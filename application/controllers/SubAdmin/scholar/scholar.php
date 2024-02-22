@@ -22,7 +22,16 @@ class ScholarSub {
 
         switch (!empty($_GET['view']) ? $_GET['view'] : null) {
             case 'view':
-                $content = $self->load->view("Admin/modules/scholar/view", ["response"=> $message,"link2"=>$link], true);
+                
+                $result = $self->db->query("SELECT * FROM scholar_info WHERE scholar_id=".$_GET['id'])->result();
+                // print_r($result);
+
+                if(!empty($result)) {
+                    $content = $self->load->view("Admin/modules/scholar/view", ["response"=> $message,"link2"=>$link,"result"=>$result[0]], true);
+                }
+                else {
+                    Redirect("$link/notification");
+                }
                 break;
 
             case "update":
@@ -33,6 +42,10 @@ class ScholarSub {
                 ], true);
                 break;
 
+                case "viewdoc":
+                    $content = $self->load->view("Admin/modules/scholar/viewdoc", ["response"=> $message,"link2"=>$link], true);
+          
+                    break;
             case "add1":
                 $content = $self->load->view("Admin/modules/scholar/add1", ["link2"=>$link], true);
                 break;
@@ -51,7 +64,7 @@ class ScholarSub {
                 $content = $this->loadScholarEditView($self, 'editapp', $link);
                 break;
             default:
-                $query = "SELECT * FROM `scholar_info` info INNER JOIN user_acc acc ON info.user_id = acc.USERID WHERE info.deleted_at IS NULL AND acc.account_approval IN ('','accept','pending')";
+                $query = "SELECT * FROM `scholar_info` info INNER JOIN user_acc acc ON info.user_id = acc.USERID WHERE info.deleted_at IS NULL AND acc.account_approval IN ('','accept','pending') and ( graduated_at is null AND terminated_at is null)";
                 $cur = $self->db->query($query)->result();
                 $content = $self->load->view("Admin/modules/scholar/list", [
                     "cur" => $cur,

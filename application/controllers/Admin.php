@@ -31,6 +31,7 @@ class Admin extends CI_Controller {
         $this->load->model("Initialize/Comments");
         $this->load->model("Initialize/Replies");
 
+        $this->load->model("Initialize/User");
         $this->load->model("Initialize/Dates");
         
         $this->announcement = new announcementSub();
@@ -125,7 +126,7 @@ $this->scholar = new ScholarSub();
     //     $this->scholar->scholarController($this,"Admin");
     // }
 
-    public function Scholar() {
+    public function scholar() {
         $this->accountSession();
         $this->scholar->scholarController($this,"Admin");
     }
@@ -158,6 +159,21 @@ $this->scholar = new ScholarSub();
             )
         );
     }
+    public function notification() {
+    
+    
+        $id = $_SESSION['USERID'];
+    
+        $user = new User();
+        $res = $user->single_user($id);
+    
+            $this->view_render(array(
+                "content"=>$this->load->view("Staff/modules/notification/list",["res"=>$res,
+                "link_direct"=>"Admin"],true),
+                "title"=>"Scholars",
+                "link"=>"Admin"
+            ));
+        }
     public function Logout() {
         unset( $_SESSION['USERID'] );
 unset( $_SESSION['NAME'] );

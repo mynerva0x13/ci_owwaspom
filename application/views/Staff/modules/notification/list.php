@@ -1,6 +1,9 @@
 <?php
 
     $link = ($_SESSION["TYPE"]=="Staff") ? "Staff" : "admin";
+
+    $ids = (!empty($_GET['id'])) ? "AND notif_creator=".$_GET['id'] : null;
+    echo $ids;
     ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <style>
@@ -14,147 +17,96 @@
     </style>
 
 <div class="w-100">
-
 <div class="card-body pt-0">
-<h3>Unread Notifications</h3>
-<?php
-   
-    $notifications = $this->db->query("SELECT * FROM `notification` WHERE notification_for = 'Administrator' AND notification_status = 'unread' ORDER BY notification_date DESC")->result();
+    <h3>Unread Notifications</h3>
+    <?php
+
+    $notifications = $this->db->query("SELECT * FROM `notification` WHERE notification_for = 'Administrator' AND notification_status = 'unread' $ids ORDER BY notification_date DESC")->result();
 
     if (count($notifications) > 0) {
-?>
-<div class="row">
-<div class="col-sm-5">
-<div class="form-group">
-    <label class="bmd-label-floating">Body</label>
-</div>
-</div> 
+        echo '<table id="example" class="table table-border table-hover  dataTable no-footer">';
+        echo '<thead>';
+        echo '<tr>';
+        echo '<th>Body</th>';
+        echo '<th>Notification type</th>';
+        echo '<th>Creator</th>';
+        echo '<th>Created</th>';
+        echo '<th>Actions</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
 
-<div class="col-sm-1">
-<div class="form-group">
-    <label class="bmd-label-floating">Notification type</label>
-</div>
-</div>   
+        foreach ($notifications as $notification) {
+            $type = $notification->notification_type;
+            $id = $notification->catch_id;
+            $person = $notification->notif_creator;
 
-<div class="col-sm-2">
-<div class="form-group">
-    <label class="bmd-label-floating">Creator</label>
-</div>
-</div>   
-<div class="col-sm-2">
-<div class="form-group">
-    <label class="bmd-label-floating">Created</label>
-</div>
-</div> 
-<div class="col-sm-2">
-<div class="form-group">
-    <label class="bmd-label-floating">Actions</label>
-</div>
-</div> 
-  </div>
-  <!-- <input name="notification_id" type="hidden" value="<?php echo $result->catch_id ?>"> -->
-<?php
-    foreach ($notifications as $notification) {
-        $type = $notification->notification_type;
-        $id = $notification->catch_id;
-        $person = $notification->notif_creator;
+            $student = new Student();
+            $scholarid = $student->single_students($id);
+            $scholar_id = $scholarid ? $scholarid->scholar_id : null;
 
-        $student = new Student();
-        $scholarid = $student->single_students($id);
-        $scholar_id = $scholarid ? $scholarid->scholar_id : null;
+            if ($type == "comment") {
+                $comment = new Comments();
+                $res = $comment->single_comments($id);
+                $commentid = $res ? $res->announcement_id : null;
 
+                $announcement_id = null;
+                $announcement = new Announcement();
+                $a = $announcement->single_announcement($commentid);
+                $announcement_id = $a ? $a->id_announcement : null;
 
-        if ($type == "comment" ) {
-            $comment = new Comments();
-            $res = $comment->single_comments($id);
-            $commentid = $res ? $res->announcement_id : null;
+                $sql = "UPDATE `notification` set `notification_status`='read'   WHERE `notification_id` = $id";
+                $this->db->query($sql);
+                $link = base_url("$link_direct/announcement?view=view&id=" . $announcement_id);
+            } elseif ($type == "reply") {
+                $reply = new Replies();
+                $res = $reply->single_replies($id);
+                $id = $res ? $res->commentid : null;
 
+                $comment = new Comments();
+                $res = $comment->single_comments($id);
+                $commentid = $res ? $res->announcement_id : null;
 
-            $announcement_id = null;
-            $announcement = new Announcement();
-            $a = $announcement->single_announcement($commentid);
-            $announcement_id = $a ? $a->id_announcement : null;
-    
-            $sql = "UPDATE `notification` set `notification_status`='read'   WHERE `notification_id` = $id";
-            $this->db->query($sql);
-            $link = base_url("$link_direct/announcement?view=view&id=" . $announcement_id);
-        } elseif ($type == "reply") {    
+                $announcement_id = null;
+                $announcement = new Announcement();
+                $a = $announcement->single_announcement($commentid);
+                $announcement_id = $a ? $a->id_announcement : null;
+                $sql = "UPDATE `notification` set `notification_status`='read'   WHERE `notification_id` = $id";
+                $this->db->query($sql);
 
-            $reply = new Replies();
-            $res = $reply->single_replies($id);
-            $id = $res ? $res->commentid : null;
+                $link = base_url("$link_direct/announcement?view=view&id=" . $announcement_id);
+            } elseif ($type == "request") {
+                $link = base_url("$link_direct/scholar?view=view&id=" . $person);
+            } elseif ($type == "Documents") {
+                $sql = "UPDATE `notification` set `notification_status`='read'   WHERE `notification_id` = $id";
+                $this->db->query($sql);
+                $link = base_url("$link_direct/scholar?view=view&id=" . $person);
+            } else {
+                $link = base_url("Staff/Dashboard");
+            }
 
-            $comment = new Comments();
-            $res = $comment->single_comments($id);
-            $commentid = $res ? $res->announcement_id : null;
-
-
-            $announcement_id = null;
-            $announcement = new Announcement();
-            $a = $announcement->single_announcement($commentid);
-            $announcement_id = $a ? $a->id_announcement : null;
-            $sql = "UPDATE `notification` set `notification_status`='read'   WHERE `notification_id` = $id";
-            $this->db->query($sql);
-            
-            $link = base_url("$link_direct/announcement?view=view&id=" . $announcement_id);
-        } elseif ($type == "request") {    
-            $link = base_url("$link_direct/scholar?view=view&id=" . $person);
-        }  elseif ($type == "Documents") {    
-            $sql = "UPDATE `notification` set `notification_status`='read'   WHERE `notification_id` = $id";
-            $this->db->query($sql);  
-            $link = base_url("$link_direct/scholar?view=view&id=" . $person);
-        }else {
-            $link = base_url("Staff/Dashboard");
+            echo '<tr>';
+            echo '<td class="col-2">' . $notification->notification_message . '</td>';
+            echo '<td>' . $notification->notification_type . '</td>';
+            echo '<td>' . $notification->notif_creator . '</td>';
+            echo '<td>' . $notification->notification_date . '</td>';
+            echo '<td><a href="' . $link . '" class="userinfo btn btn-info" name="save" type="submit" value="' . $notification->notification_id . '" onclick="updateNotificationStatus(' . $notification->notification_id . ')"><span class="fa fa-save fw-fa"></span> View Info</a></td>';
+            echo '</tr>';
         }
-
-echo '
-    <div class="bg-light rounded p-2">
-        <div class="row">
-            <div class="col-sm-5">
-                <div class="form-group">
-                    <label class="bmd-label-floating dark-label">' . $notification->notification_message . '</label>
+        echo '</tbody>';
+        echo '</table>';
+    } else {
+        echo '<div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">No unread notifications found.</label>
+                    </div>
                 </div>
-            </div> 
-            <div class="col-sm-1">
-                <div class="form-group">
-                    <label class="bmd-label-floating dark-label">' . $notification->notification_type . '</label>
-                </div>
-            </div>   
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <label class="bmd-label-floating dark-label">' . $notification->notif_creator . '</label>
-                </div>
-            </div>   
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <label class="bmd-label-floating dark-label">' . $notification->notification_date . '</label>
-                </div>
-            </div> 
-            <div class="col-sm-2">
-                <div class="form-group"> 
-                <a href="' . $link . '" class="userinfo btn btn-info" name="save" type="submit" value="' . $notification->notification_id . '"
-                onclick="updateNotificationStatus(' . $notification->notification_id . ')">
-                <span class="fa fa-save fw-fa"></span> View Info
-             </a>                                                              
-                </div>
-            </div>
-        </div> 
-    </div>';
-}
-}
-else {
-echo '<div class="row">
-<div class="col-sm-12">
-<div class="form-group">
-<label class="bmd-label-floating">No unread notifications found.</label>
+              </div>';
+    }
+    ?>
 </div>
-</div>
-</div>';
-}
-?>
 
-
-</div>
 </div>
 <!-- </form> -->
 <!-- <form action="controller.php?action=info" method="POST"> -->
