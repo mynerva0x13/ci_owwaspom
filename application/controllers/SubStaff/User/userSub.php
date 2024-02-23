@@ -25,6 +25,18 @@ class userSub {
                 array(),true
                 );
             break;
+            case "edit":
+                
+                $self->db->select('*');
+                $self->db->from('user_acc');
+                $self->db->like('USERID', $_GET['id']);
+
+                $content = $self->load->view("staff/modules/user/add",
+                array(
+                    "content"=>$self->db->get()->row()
+                ),true
+                );
+                break;
             default:
                 $USERID = $self->session->userdata('USERID');
 
@@ -41,8 +53,7 @@ class userSub {
                     // Second query using Query Builder
                     $self->db->select('*');
                     $self->db->from('user_acc');
-                    $self->db->join('scholar_info', 'user_acc.USERID = scholar_info.user_id');
-                    $self->db->like('address', $staffLocation);
+                    $self->db->like('staff_address', $staffLocation);
                     $query2 = $self->db->get();
 
                     // Fetch results

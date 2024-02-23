@@ -94,6 +94,7 @@ $ids = (!empty($_GET['id'])) ? "AND notif_creator=".$_GET['id'] : null;
                                     $sql = "UPDATE `notification` set `notification_status`='read'   WHERE `notification_id` = $id";
                                     $this->db->query($sql);  
                                     $link = base_url("$link2/modstudent/index.php?view=view&id=" . $scholar_id);
+									// $link = base_url("$link2/studentProfile?view=editme&link=Staff&id=$scholar_id");scholar_id
                                 } else {
                                     $link = base_url("admin/index.php");
                                 }
@@ -124,7 +125,7 @@ $ids = (!empty($_GET['id'])) ? "AND notif_creator=".$_GET['id'] : null;
                                     <div class="col-sm-2">
                                         <div class="form-group"> 
                                         <a href="' . $link . '" class="userinfo btn btn-info" name="save" type="submit" value="' . $notification->notification_id . '"
-                                        onclick="updateNotificationStatus(' . $notification->notification_id . ')">
+                                     >
                                         <span class="fa fa-save fw-fa"></span> View Info
                                     </a>                                                              
                                         </div>

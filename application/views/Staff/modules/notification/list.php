@@ -76,7 +76,7 @@
 
                 $link = base_url("$link_direct/announcement?view=view&id=" . $announcement_id);
             } elseif ($type == "request") {
-                $link = base_url("$link_direct/scholar?view=view&id=" . $person);
+                $link = base_url("$link_direct/RequestUpdate?view=view&id=" . $person);
             } elseif ($type == "Documents") {
                 $sql = "UPDATE `notification` set `notification_status`='read'   WHERE `notification_id` = $id";
                 $this->db->query($sql);
@@ -84,14 +84,16 @@
             } else {
                 $link = base_url("Staff/Dashboard");
             }
-
+if($_SESSION['link']=="Staff" && $notification->notification_type == "request") {
             echo '<tr>';
             echo '<td class="col-2">' . $notification->notification_message . '</td>';
             echo '<td>' . $notification->notification_type . '</td>';
             echo '<td>' . $notification->notif_creator . '</td>';
             echo '<td>' . $notification->notification_date . '</td>';
+            $view = null;
             echo '<td><a href="' . $link . '" class="userinfo btn btn-info" name="save" type="submit" value="' . $notification->notification_id . '" onclick="updateNotificationStatus(' . $notification->notification_id . ')"><span class="fa fa-save fw-fa"></span> View Info</a></td>';
             echo '</tr>';
+}
         }
         echo '</tbody>';
         echo '</table>';

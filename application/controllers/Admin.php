@@ -23,6 +23,7 @@ class Admin extends CI_Controller {
         
         $this->load->library('session');
         
+        $this->user = new userSub();
         $this->load->model("Initialize/Session");
         $this->load->model("Initialize/Announcement");
         $this->load->model("Initialize/Student");
@@ -159,6 +160,11 @@ $this->scholar = new ScholarSub();
             )
         );
     }
+    
+    public function User() {
+        $this->user->userController($this,"Admin");
+    }
+    
     public function notification() {
     
     

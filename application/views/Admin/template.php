@@ -15,7 +15,7 @@
       <div class="sidebar-wrapper">
   <ul class="nav">
     <li class="nav-item <?php echo ($this->Func_Misc->currentpage_admin() == '') ? 'active' : ''; ?>">
-      <a class="nav-link" href="<?php echo base_url('admin/index.php') ?>">
+      <a class="nav-link" href="<?php echo base_url('admin/Dashboard') ?>">
         <i class="material-icons">dashboard</i>
         <p>Dashboard</p>
       </a>
@@ -34,8 +34,7 @@
       </a>
     </li>
     <li class="nav-item <?php echo ($this->Func_Misc->currentpage_admin() == 'user') ? 'active' : ''; ?>">
-      <a class="nav-link" href="<?php echo base_url("admin/user") ?>">
-      
+      <a class="nav-link" href="<?php echo base_url("admin/User") ?>">
         <p>Users</p>
       </a>
     </li>

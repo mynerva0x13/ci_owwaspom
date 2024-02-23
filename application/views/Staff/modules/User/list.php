@@ -42,7 +42,7 @@
 							echo '<td>'. $result->account_status.'</td>';
 							// echo '<td>'. $result->TYPE.'</td>';
 							echo '<td width="5%" > 
-									<a title="Edit" href="index.php?view=edit&id='.$result->USERID.'" class="btn btn-info btn-sm" >
+									<a title="Edit" href="'.base_url("{$_SESSION['link']}/User?view=edit&id=$result->USERID").'" class="btn btn-info btn-sm" >
 									<i class="fa fa-edit fa-xs">
 									</i>
 										</a>
